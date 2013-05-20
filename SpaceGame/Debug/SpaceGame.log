@@ -1,0 +1,17 @@
+﻿Build started 20-05-2013 23:24:14.
+     1>Project "C:\Users\Crismis\Documents\Speed_Game_Jam-Summer2013\SpacePlatformer\SpaceGameJam\SpaceGame\SpaceGame.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\SpaceGame.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         SpaceGame.vcxproj -> C:\Users\Crismis\Documents\Speed_Game_Jam-Summer2013\SpacePlatformer\SpaceGameJam\Debug\SpaceGame.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\SpaceGame.unsuccessfulbuild".
+         Touching "Debug\SpaceGame.lastbuildstate".
+     1>Done Building Project "C:\Users\Crismis\Documents\Speed_Game_Jam-Summer2013\SpacePlatformer\SpaceGameJam\SpaceGame\SpaceGame.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.04
