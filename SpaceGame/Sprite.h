@@ -16,7 +16,7 @@ class Sprite {
 		SDL_Surface* Image;
 
 		//Methods
-		SDL_Surface* LoadImage(char* file);
+		SDL_Surface* LoadImage(const char* file);
 
 	public:
 		//Vars
@@ -25,7 +25,7 @@ class Sprite {
 		//Methods
 		Sprite();
 
-		Sprite(char* file);
+		Sprite(const char* file);
 
 		bool OnDraw(SDL_Surface* Display, int X, int Y);
 

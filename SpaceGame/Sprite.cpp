@@ -4,11 +4,11 @@ Sprite::Sprite() {
 	Image = NULL;
 }
 
-Sprite::Sprite(char* file) {
+Sprite::Sprite(const char* file) {
 	Image = LoadImage(file);
 }
 
-SDL_Surface* Sprite::LoadImage(char* file) {
+SDL_Surface* Sprite::LoadImage(const char* file) {
 	SDL_Surface* Surf_Temp = NULL;
 	SDL_Surface* Surf_Return = NULL;
 
