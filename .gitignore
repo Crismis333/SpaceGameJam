@@ -13,9 +13,9 @@
 *.a
 
 # Code Block project
-SpaceGameJam.cbp
-SpaceGameJam.depend
-SpaceGameJam.layout
+SpaceGame.cbp
+SpaceGame.depend
+SpaceGame.layout
 
 # Platform dependant compile stuff
 Release
