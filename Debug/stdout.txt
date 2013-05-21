@@ -1,0 +1,1 @@
+Application Initializing!Application Quitting!

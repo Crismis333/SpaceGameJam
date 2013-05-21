@@ -1,17 +1,8 @@
-#ifdef OS_WINDOWS
-    #include "SDL.h"
-#else
-    #include <SDL/SDL.h>
-#endif
+#include "App.h"
 
 int main( int argc, char* args[] )
 {
-    //Start SDL
-    SDL_Init( SDL_INIT_EVERYTHING );
+	App app;
 
-
-    //Quit SDL
-    SDL_Quit();
-
-    return 0;
+	return app.OnExecute();
 }
