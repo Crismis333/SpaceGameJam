@@ -11,6 +11,9 @@ int App::OnExecute() {
 		return -1;
 	}
 
+	Test = Sprite("./TestSprite.png");
+	Test.SetTransparencyColor(255,0,255);
+
 	SDL_Event Event;
 
 	while(Running) {

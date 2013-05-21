@@ -2,7 +2,7 @@
 
 bool App::OnInit() {
 
-	#ifdef _PRINT_DEBUG_
+	#ifdef PRINTDEBUG
 		printf("Application Initializing!\n");
 	#endif
 

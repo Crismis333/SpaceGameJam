@@ -39,9 +39,15 @@
     <ClCompile Include="App_OnCleanup.cpp">
       <Filter>Source Files\AppMethods</Filter>
     </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

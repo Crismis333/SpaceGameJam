@@ -76,6 +76,7 @@
     <ClCompile Include="App_OnLoop.cpp" />
     <ClCompile Include="App_OnRender.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
