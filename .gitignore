@@ -17,8 +17,9 @@ SpaceGameJam.cbp
 SpaceGameJam.depend
 SpaceGameJam.layout
 
-# Platform dependant stuff
+# Platform dependant compile stuff
 Release
 Debug
 SpaceGame/Debug
 SpaceGame/Release
+ipch
