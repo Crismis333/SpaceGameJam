@@ -14,7 +14,11 @@
 
 # Code Block project
 SpaceGameJam.cbp
-bin
-obj
 SpaceGameJam.depend
 SpaceGameJam.layout
+
+# Platform dependant stuff
+Release
+Debug
+SpaceGame/Debug
+SpaceGame/Release
