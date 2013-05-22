@@ -2,6 +2,8 @@
 
 Sprite::Sprite() {
 	Image = NULL;
+
+	OffsetX = OffsetY = 0;
 }
 
 Sprite::Sprite(const char* file) {
@@ -36,8 +38,8 @@ bool Sprite::OnDraw(SDL_Surface* Display, int X, int Y) {
 
 	SDL_Rect DestR;
 
-	DestR.x = X;
-	DestR.y = Y;
+	DestR.x = X-OffsetX;
+	DestR.y = Y-OffsetY;
 
 	SDL_BlitSurface(Image, NULL, Display, &DestR);
 
@@ -54,8 +56,8 @@ bool Sprite::OnDraw(SDL_Surface* Display, int X, int Y, int X2, int Y2, int W, i
 
 	SDL_Rect DestR;
 
-	DestR.x = X;
-	DestR.y = Y;
+	DestR.x = X-OffsetX;
+	DestR.y = Y-OffsetY;
 
 	SDL_Rect SrcR;
 

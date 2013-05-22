@@ -10,7 +10,7 @@ bool App::OnInit() {
 		return false;
 	}
 
-	if ((Display = SDL_SetVideoMode(640,480,32,SDL_HWSURFACE | SDL_DOUBLEBUF)) == NULL) {
+	if ((Display = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,32,SDL_HWSURFACE | SDL_DOUBLEBUF)) == false) {
 		return false;
 	}
 

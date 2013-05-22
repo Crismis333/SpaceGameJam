@@ -24,6 +24,9 @@ class Sprite {
 		//Vars
 		bool Visible;
 
+		int OffsetX;
+		int OffsetY;
+
 		//Methods
 		Sprite();
 

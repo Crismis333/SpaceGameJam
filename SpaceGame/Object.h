@@ -7,6 +7,10 @@
 class Object : public Event {
 	public:
 		//Vars
+		static int IDcount;
+
+		int ID;
+
 		float X;
 		float Y;
 
