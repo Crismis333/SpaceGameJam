@@ -4,8 +4,6 @@ std::vector<Room*> Room::RoomList;
 
 Room::Room() {
 	std::vector<Object*> ObjectList;
-	Width = 640;
-	Height = 480;
 }
 
 Room::~Room() {
@@ -19,7 +17,15 @@ void Room::RemoveObject(Object* obj) {
 	ObjectList.erase(std::remove(ObjectList.begin(), ObjectList.end(), obj), ObjectList.end());
 }
 
-void Room::OnInit() {
+bool Room::OnInit() {
+	for (unsigned int i = 0; i < ObjectList.size(); i++) {
+		if (!ObjectList[i]) continue;
+
+		if (ObjectList[i]->OnInit() == false)
+			return false;
+	}
+
+	return true;
 }
 
 void Room::OnEvent(SDL_Event* Ev) {

@@ -10,14 +10,11 @@ class Room {
 		static std::vector<Room*> RoomList;
 		std::vector<Object*> ObjectList;
 
-		int Width;
-		int Height;
-
 	public:
 		Room();
 		~Room();
 
-		void OnInit();
+		bool OnInit();
 		void OnLoop();
 		void OnRender(SDL_Surface* display);
 		void OnEvent(SDL_Event* Ev);

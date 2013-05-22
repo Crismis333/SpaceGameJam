@@ -2,16 +2,23 @@
     #define APP_H_
 	#define PRINTDEBUG //comment out or remove to disable debug log
 
+	#define SCREEN_WIDTH	640
+	#define SCREEN_HEIGHT	480
+
 #include "Room.h"
 #include <math.h>
 
 class App : public Event {
 	private:
 		bool			Running;
+
 		SDL_Surface*	Display;
+
+		Room			InitialRoom;
 
 		Object			Test;
 		Room			TestRoom;
+		Room*			CurrentRoom;
 
         // Frame counting
         int             LastLoopTime;
@@ -35,6 +42,8 @@ class App : public Event {
 		void OnRender();
 
 		void OnCleanup();
+
+		void GotoRoom(Room* Room);
 
 		//Events
 		void OnExit();

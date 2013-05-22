@@ -1,9 +1,14 @@
 #include "Object.h"
 
+int Object::IDcount = 0;
+
 Object::Object() {
 	Spr = NULL;
 
 	X = Y = 0.0f;
+
+	ID = Object::IDcount;
+	IDcount++;
 }
 
 Object::~Object() {
