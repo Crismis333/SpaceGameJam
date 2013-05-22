@@ -18,6 +18,8 @@ class Sprite {
 		//Methods
 		SDL_Surface* LoadImage(const char* file);
 
+		bool SetTransparencyColor(int R, int G, int B);
+
 	public:
 		//Vars
 		bool Visible;
@@ -30,8 +32,6 @@ class Sprite {
 		bool OnDraw(SDL_Surface* Display, int X, int Y);
 
 		bool OnDraw(SDL_Surface* Display, int X, int Y, int X2, int Y2, int W, int H);
-
-		bool SetTransparencyColor(int R, int G, int B);
 
 		void OnCleanup();
 };

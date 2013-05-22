@@ -6,6 +6,7 @@ Sprite::Sprite() {
 
 Sprite::Sprite(const char* file) {
 	Image = LoadImage(file);
+	SetTransparencyColor(255,0,255);
 }
 
 SDL_Surface* Sprite::LoadImage(const char* file) {

@@ -6,6 +6,13 @@ void App::OnCleanup() {
 		printf("Cleaning up!\n");
 	#endif
 
-	Test.OnCleanup();
+	for (int i = 0; i < Object::ObjectList.size(); i++) {
+		if (!Object::ObjectList[i]) continue;
+
+		Object::ObjectList[i]->OnCleanup();
+	}
+
+	Object::ObjectList.clear();
+
 	SDL_Quit();
 }

@@ -11,14 +11,15 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Test = Sprite("./TestSprite.png");
-	Test.SetTransparencyColor(255,0,255);
+	Test = Object();
+	Test.SetSprite("./TestSprite.png");
+	Object::ObjectList.push_back(&Test);
 
-	SDL_Event Event;
+	SDL_Event Ev;
 
 	while(Running) {
-		while (SDL_PollEvent(&Event)) {
-			OnEvent(&Event);
+		while (SDL_PollEvent(&Ev)) {
+			OnEvent(&Ev);
 		}
 
 		OnLoop();
