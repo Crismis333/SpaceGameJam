@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="App_FrameCounting.cpp" />
     <ClCompile Include="App_OnCleanup.cpp" />
     <ClCompile Include="App_OnEvent.cpp" />
     <ClCompile Include="App_OnInit.cpp" />

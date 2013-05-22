@@ -13,9 +13,9 @@
 *.a
 
 # Visual Studio project
-*.suo
-*.sdf
-*.opensdf
+SpaceGame.suo
+SpaceGame.sdf
+SpaceGame.opensdf
 
 # Code Block project
 SpaceGame.cbp

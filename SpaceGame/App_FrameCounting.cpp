@@ -8,15 +8,15 @@ void App::OnFrameBegin() {
 
     SpeedFactor = (CurrentLoopTime - LastLoopTime) / 1000.0f;
 
-    if (floor(SDL_GetTicks() / 1000) - floor(LastLoopTime / 1000) == 1) {
+	if (floorf((float)SDL_GetTicks() / 1000) - floorf((float)LastLoopTime / 1000) == 1) {
         FPS = Frames;
         Frames = 0;
 
-        /*#ifdef PRINTDEBUG
+        #ifdef PRINTDEBUG
 			printf("Current FPS is:%d\n", FPS);
 			printf("ConvertSpeedTest (from 200 px/sec):%f\n", ConvertSpeed(200));
 			printf("Time increase:%d\n", CurrentLoopTime - LastLoopTime);
-		#endif*/
+		#endif
     }
 }
 

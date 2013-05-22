@@ -18,8 +18,6 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Test = Object();
-	TestRoom = Room();
 	Test.SetSprite("./TestSprite.png");
 	Test.Spr->OffsetX = 8;
 	Test.Spr->OffsetY = 16;
