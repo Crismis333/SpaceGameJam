@@ -20,12 +20,12 @@ void Object::OnLoop() {
 }
 
 void Object::OnRender(SDL_Surface* display) {
-	if (!Spr)
+	if (Spr)
 		Spr->OnDraw(display, (int) X, (int) Y);
 }
 
 void Object::OnCleanup() {
-	if (!Spr)
+	if (Spr)
 		Spr->OnCleanup();
 }
 
