@@ -1,0 +1,30 @@
+#ifndef ROOM_H_
+	#define ROOM_H_
+
+#include "Object.h"
+#include <vector>
+#include <algorithm>
+
+class Room {
+	public:
+		static std::vector<Room*> RoomList;
+		std::vector<Object*> ObjectList;
+
+		int Width;
+		int Height;
+
+	public:
+		Room();
+		~Room();
+
+		void OnInit();
+		void OnLoop();
+		void OnRender(SDL_Surface* display);
+		void OnEvent(SDL_Event* Ev);
+		void OnCleanup();
+
+		void AddObject(Object* obj);
+		void RemoveObject(Object* obj);
+};
+
+#endif

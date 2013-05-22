@@ -1,16 +1,12 @@
 #ifndef OBJECT_H_
 	#define OBJECT_H_
 
-#include <vector>
-
 #include "Sprite.h"
 #include "Event.h"
 
 class Object : public Event {
 	public:
 		//Vars
-		static std::vector<Object*>	ObjectList;
-
 		float X;
 		float Y;
 

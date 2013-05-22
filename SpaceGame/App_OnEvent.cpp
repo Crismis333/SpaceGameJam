@@ -3,10 +3,10 @@
 void App::OnEvent(SDL_Event* Ev) {
 	Event::OnEvent(Ev);
 
-	for (unsigned int i = 0; i < Object::ObjectList.size(); i++) {
-		if (!Object::ObjectList[i]) continue;
+	for (unsigned int i = 0; i < Room::RoomList.size(); i++) {
+		if (!Room::RoomList[i]) continue;
 
-		Object::ObjectList[i]->OnEvent(Ev);
+		Room::RoomList[i]->OnEvent(Ev);
 	}
 }
 

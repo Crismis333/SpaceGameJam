@@ -2,9 +2,7 @@
     #define APP_H_
 	#define PRINTDEBUG //comment out or remove to disable debug log
 
-#include "Sprite.h"
-#include "Object.h"
-#include "Event.h"
+#include "Room.h"
 
 class App : public Event {
 	private:
@@ -13,6 +11,7 @@ class App : public Event {
 		SDL_Surface*	Display;
 
 		Object			Test;
+		Room			TestRoom;
 
 	public: 
 		App();

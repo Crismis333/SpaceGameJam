@@ -12,9 +12,12 @@ int App::OnExecute() {
 	}
 
 	Test = Object();
+	TestRoom = Room();
 	Test.SetSprite("./TestSprite.png");
-	Object::ObjectList.push_back(&Test);
 
+	TestRoom.AddObject(&Test);
+	Room::RoomList.push_back(&TestRoom);
+	
 	SDL_Event Ev;
 
 	while(Running) {

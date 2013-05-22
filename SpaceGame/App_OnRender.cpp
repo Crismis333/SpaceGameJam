@@ -1,11 +1,10 @@
 #include "App.h"
 
 void App::OnRender() {
+	for (unsigned int i = 0; i < Room::RoomList.size(); i++) {
+		if (!Room::RoomList[i]) continue;
 
-	for (unsigned int i = 0; i < Object::ObjectList.size(); i++) {
-		if (!Object::ObjectList[i]) continue;
-
-		Object::ObjectList[i]->OnRender(Display);
+		Room::RoomList[i]->OnRender(Display);
 	}
 
 	SDL_Flip(Display);

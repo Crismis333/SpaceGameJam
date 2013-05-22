@@ -1,7 +1,5 @@
 #include "Object.h"
 
-std::vector<Object*> Object::ObjectList;
-
 Object::Object() {
 	Spr = NULL;
 

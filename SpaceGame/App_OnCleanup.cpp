@@ -6,13 +6,13 @@ void App::OnCleanup() {
 		printf("Cleaning up!\n");
 	#endif
 
-	for (unsigned int i = 0; i < Object::ObjectList.size(); i++) {
-		if (!Object::ObjectList[i]) continue;
+	for (unsigned int i = 0; i < Room::RoomList.size(); i++) {
+		if (!Room::RoomList[i]) continue;
 
-		Object::ObjectList[i]->OnCleanup();
+		Room::RoomList[i]->OnCleanup();
 	}
 
-	Object::ObjectList.clear();
+	Room::RoomList.clear();
 
 	SDL_Quit();
 }
