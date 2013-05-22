@@ -31,8 +31,6 @@ class App : public Event {
 
 		//Events
 		void OnExit();
-
-		void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
 };
 
 

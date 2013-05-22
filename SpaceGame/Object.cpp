@@ -21,7 +21,7 @@ void Object::OnLoop() {
 
 void Object::OnRender(SDL_Surface* display) {
 	if (!Spr == NULL)
-		Spr->OnDraw(display, X, Y);
+		Spr->OnDraw(display, (int) X, (int) Y);
 }
 
 void Object::OnCleanup() {
@@ -33,7 +33,11 @@ void Object::SetSprite(const char* file) {
 	Spr = new Sprite(file);
 }
 
+void Object::OnEvent(SDL_Event* Ev) {
+	Event::OnEvent(Ev);
+}
+
 void Object::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {
-	X = mX;
-	Y = mY;
+	X = (float)mX;
+	Y = (float)mY;
 }

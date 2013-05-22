@@ -4,8 +4,9 @@
 #include <vector>
 
 #include "Sprite.h"
+#include "Event.h"
 
-class Object {
+class Object : public Event {
 	public:
 		//Vars
 		static std::vector<Object*>	ObjectList;
@@ -31,6 +32,8 @@ class Object {
 		void SetSprite(const char* file);
 
 		//Events
+		void OnEvent(SDL_Event* Ev);
+
 		void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
 };
 
