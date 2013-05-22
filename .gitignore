@@ -12,6 +12,11 @@
 *.la
 *.a
 
+# Visual Studio project
+*.suo
+*.sdf
+*.opensdf
+
 # Code Block project
 SpaceGame.cbp
 SpaceGame.depend
