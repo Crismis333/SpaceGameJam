@@ -3,17 +3,25 @@
 	#define PRINTDEBUG //comment out or remove to disable debug log
 
 #include "Room.h"
+#include <math.h>
 
 class App : public Event {
 	private:
 		bool			Running;
-
 		SDL_Surface*	Display;
 
 		Object			Test;
 		Room			TestRoom;
 
-	public: 
+        // Frame counting
+        int             LastLoopTime;
+        int             CurrentLoopTime;
+		int             FPS;
+		int             Frames;
+		int             TotalFrames;
+		float           SpeedFactor;
+
+	public:
 		App();
 
 		int OnExecute();
@@ -30,6 +38,13 @@ class App : public Event {
 
 		//Events
 		void OnExit();
+
+		// Frame counting
+		void OnFrameBegin();
+		void OnFrameEnd();
+		int GetFPS();
+		int GetFrames();
+		float ConvertSpeed(float Speed);
 };
 
 

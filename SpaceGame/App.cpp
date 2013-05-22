@@ -17,16 +17,24 @@ int App::OnExecute() {
 
 	TestRoom.AddObject(&Test);
 	Room::RoomList.push_back(&TestRoom);
-	
+
 	SDL_Event Ev;
 
+    LastLoopTime = 0;
+    FPS = 0;
+    Frames = 0;
+    TotalFrames = 0;
+    SpeedFactor = 0.0f;
+
 	while(Running) {
+        OnFrameBegin();
 		while (SDL_PollEvent(&Ev)) {
 			OnEvent(&Ev);
 		}
 
 		OnLoop();
 		OnRender();
+		OnFrameEnd();
 	}
 
 	OnCleanup();
