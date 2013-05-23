@@ -4,7 +4,7 @@ void App::OnFrameBegin() {
     do {
        CurrentLoopTime = SDL_GetTicks();
     }
-    while (CurrentLoopTime < LastLoopTime);
+    while (CurrentLoopTime == LastLoopTime);
 
     SpeedFactor = (CurrentLoopTime - LastLoopTime) / 1000.0f;
 
