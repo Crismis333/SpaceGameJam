@@ -1,5 +1,7 @@
 #include "App.h"
 
+App App::Application;
+
 App::App() {
 	Display = NULL;
 

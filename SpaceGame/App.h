@@ -29,6 +29,10 @@ class App : public Event {
 		float           SpeedFactor;
 
 	public:
+		//Vars
+		static App		Application;
+
+		//Methods
 		App();
 
 		int OnExecute();

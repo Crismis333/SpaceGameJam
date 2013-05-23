@@ -40,6 +40,7 @@ void Object::OnEvent(SDL_Event* Ev) {
 	Event::OnEvent(Ev);
 }
 
+//Testing Purposes
 void Object::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {
 	X = (float)mX;
 	Y = (float)mY;
