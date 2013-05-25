@@ -2,8 +2,8 @@
 	#define ROOM_H_
 
 #include "Object.h"
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 class Room {
 	public:

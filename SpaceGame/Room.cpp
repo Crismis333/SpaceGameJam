@@ -42,6 +42,19 @@ void Room::OnLoop() {
 
 		ObjectList[i]->OnLoop();
 	}
+
+	for (unsigned int i = 0; i < ObjectCol::ObjectColList.size(); i++) {
+		Object* objA = ObjectCol::ObjectColList[i].ObjA;
+		Object* objB = ObjectCol::ObjectColList[i].ObjB;
+
+		if (objA == NULL || objB == NULL) continue;
+
+		if (objA->OnCollision(objB)) {
+			objB->OnCollision(objA);
+		}
+	}
+
+	ObjectCol::ObjectColList.clear();
 }
 
 void Room::OnRender(SDL_Surface* display) {

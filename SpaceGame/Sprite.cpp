@@ -7,6 +7,7 @@ Sprite::Sprite() {
 }
 
 Sprite::Sprite(const char* file) {
+	OffsetX = OffsetY = 0;
 	Image = LoadImage(file);
 	SetTransparencyColor(255,0,255);
 }

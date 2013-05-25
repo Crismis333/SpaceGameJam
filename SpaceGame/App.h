@@ -17,20 +17,13 @@ class App : public Event {
 		Room			InitialRoom;
 
 		Object			Test;
+		Object			Test2;
 		Room			TestRoom;
-		Room*			CurrentRoom;
-
-        // Frame counting
-        int             LastLoopTime;
-        int             CurrentLoopTime;
-		int             FPS;
-		int             Frames;
-		int             TotalFrames;
-		float           SpeedFactor;
 
 	public:
-		//Vars
-		static App		Application;
+		static App Application;
+
+		Room*			CurrentRoom;
 
 		//Methods
 		App();
@@ -51,13 +44,6 @@ class App : public Event {
 
 		//Events
 		void OnExit();
-
-		// Frame counting
-		void OnFrameBegin();
-		void OnFrameEnd();
-		int GetFPS();
-		int GetFrames();
-		float ConvertSpeed(float Speed);
 };
 
 

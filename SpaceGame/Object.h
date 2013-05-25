@@ -3,18 +3,47 @@
 
 #include "Sprite.h"
 #include "Event.h"
+#include "FPS.h"
+
+#include <vector>
+
+class Room;
+
+enum {
+    OBJECT_FLAG_NONE		= 0,
+ 
+    OBJECT_FLAG_GRAVITY		= 0x00000001,
+    OBJECT_FLAG_GHOST		= 0x00000002,
+    OBJECT_FLAG_MAPONLY		= 0x00000004
+};
 
 class Object : public Event {
 	public:
 		//Vars
-		static int IDcount;
+		static int	IDcount;
 
-		int ID;
+		int			ID;
 
-		float X;
-		float Y;
+		int			Flags;
 
-		Sprite* Spr;
+		float		X;
+		float		Y;
+
+		int			Width;
+		int			Height;
+
+		float		SpeedX;
+		float		SpeedY;
+
+		float		MaxSpeedX;
+		float		MaxSpeedY;
+
+		float		AccelX;
+		float		AccelY;
+
+		bool		Dead;
+
+		Sprite*		Spr;
 
 		//Methods
 		Object();
@@ -31,10 +60,43 @@ class Object : public Event {
 
 		void SetSprite(const char* file);
 
+		//Collision
+		virtual bool OnCollision(Object* Obj);
+
+		void OnMove(float MoveX, float MoveY);
+ 
+        void StopMove();
+
+        bool Collides(int oX, int oY, int oW, int oH);
+
 		//Events
 		void OnEvent(SDL_Event* Ev);
 
 		void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
+ 
+	protected:
+        int			Col_X;
+        int			Col_Y;
+        int			Col_Width;
+        int			Col_Height;
+
+    private:
+		//Collision
+        bool PosValid(int NewX, int NewY);
+ 
+        bool PosValidEntity(Object* Obj, int NewX, int NewY); // Might not be necessary with Mask test
+};
+
+class ObjectCol {
+	public:
+        static std::vector<ObjectCol>    ObjectColList;
+ 
+    public:
+        Object* ObjA;
+        Object* ObjB;
+ 
+    public:
+        ObjectCol();
 };
 
 #endif

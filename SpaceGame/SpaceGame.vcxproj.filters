@@ -51,8 +51,11 @@
     <ClCompile Include="Room.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="App_FrameCounting.cpp">
-      <Filter>Source Files\AppMethods</Filter>
+    <ClCompile Include="FPS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectCol.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +72,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

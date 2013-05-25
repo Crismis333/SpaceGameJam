@@ -5,12 +5,8 @@ App App::Application;
 App::App() {
 	Display = NULL;
 
-	InitialRoom = Room();
 	Room::RoomList.push_back(&InitialRoom);
 	CurrentRoom = &InitialRoom;
-
-	TestRoom = Room();
-	Test = Object();
 
 	Running = true;
 }
@@ -21,31 +17,32 @@ int App::OnExecute() {
 	}
 
 	Test.SetSprite("./TestSprite.png");
-	Test.Spr->OffsetX = 8;
-	Test.Spr->OffsetY = 16;
+	Test.Width = 16;
+	Test.Height = 32;
+
+	Test2.SetSprite("./TestSprite.png");
+	Test2.Width = 16;
+	Test2.Height = 32;
+	Test2.X = 200;
+	Test2.Y = 200;
 
 	TestRoom.AddObject(&Test);
+	TestRoom.AddObject(&Test2);
 	Room::RoomList.push_back(&TestRoom);
 
 	GotoRoom(&TestRoom);
 	
 	SDL_Event Ev;
 
-    LastLoopTime = 0;
-    FPS = 0;
-    Frames = 0;
-    TotalFrames = 0;
-    SpeedFactor = 0.0f;
-
 	while(Running) {
-        OnFrameBegin();
+		FPS::FPSControl.OnFrameBegin();
 		while (SDL_PollEvent(&Ev)) {
 			OnEvent(&Ev);
 		}
 
 		OnLoop();
 		OnRender();
-		OnFrameEnd();
+		FPS::FPSControl.OnFrameEnd();
 	}
 
 	OnCleanup();
