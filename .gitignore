@@ -17,6 +17,9 @@ SpaceGame.suo
 SpaceGame.sdf
 SpaceGame.opensdf
 SpaceGame.sln
+SpaceGame/SpaceGame.vcxproj
+SpaceGame/SpaceGame.vcxproj.filters
+SpaceGame/SpaceGame.vcxproj.user
 
 # Code Block project
 SpaceGame.cbp
