@@ -61,16 +61,18 @@ void Drawer::Line(int X1, int Y1, int X2, int Y2)
 }
 
 void Drawer::Rectangle(Rect rec, bool fill) {
-	for (int x = rec.X; x < rec.X+rec.Width; x++) {
-		for (int y = rec.Y; y < rec.Y + rec.Height; y++) {
-			if (fill) {
+	if (fill) {
+		for (int x = rec.X; x < rec.X+rec.Width; x++) {
+			for (int y = rec.Y; y < rec.Y + rec.Height; y++) {
 				Point(x,y);
 			}
-			else {
-				if (x == rec.X || x == rec.X+rec.Width-1 || y == rec.Y || y == rec.Y + rec.Height-1) {
-					Point(x,y);
-				}
-			}
 		}
+	}
+	else {
+		Line(rec.X,rec.Y,rec.X+rec.Width,rec.Y);
+		Line(rec.X,rec.Y,rec.X,rec.Y+rec.Height);
+
+		Line(rec.X+rec.Width, rec.Y, rec.X+rec.Height, rec.Y+rec.Width);
+		Line(rec.X, rec.Y+rec.Width, rec.X+rec.Height, rec.Y+rec.Width);
 	}
 }

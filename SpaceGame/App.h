@@ -19,9 +19,6 @@ class App : public Event {
 
 		Room			InitialRoom;
 
-		Object			Test;
-		TileSelector	TS;
-
 	public:
 		static App Application;
 
@@ -33,6 +30,8 @@ class App : public Event {
 		int OnExecute();
 
 		bool OnInit();
+
+		void InitGame();
 
 		void OnEvent(SDL_Event* Ev);
 

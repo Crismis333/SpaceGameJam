@@ -24,8 +24,10 @@ TileSelector::TileSelector(int W, int H) {
 }
 
 void TileSelector::OnRender(SDL_Surface* display) {
-	Drawer::SetColor(0,0,0);
+	Drawer::SetColor(0,145,0);
 	Drawer::Rectangle(Rect((int)X,(int)Y,Width,Height), false);
+	Drawer::SetColor(0,255,0);
+	Drawer::Rectangle(Rect((int)X+1,(int)Y+1,Width-2,Height-2), false);
 }
 
 void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {
@@ -35,7 +37,7 @@ void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bo
 
 void TileSelector::OnLButtonDown(int mX, int mY) {
 	Object* o = new Object();
-	Object::Instantiate(o,"./TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
+	Object::Instantiate(o,"./gfx/TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
 }
 
 void TileSelector::OnRButtonDown(int mX, int mY) {
