@@ -9,12 +9,15 @@ enum soldierType {
     SOLDIER_TYPE_STEALTH,
     SOLDIER_TYPE_SNIPER
 };
+
 enum direction {
     DIRECTION_LEFT, DIRECTION_RIGHT
 };
 
 class Soldier : public Object
 {
+	private:
+		typedef Object super;
     public:
         Soldier();
         Soldier(soldierType Type, int Health);
@@ -34,19 +37,32 @@ class Soldier : public Object
         float           Armour;
 
         // Attack stuff
-        float           Damage;
-        float           DamageCooldown;
-        float           DamageRandomModifier;
-        int             Range;
+        float Damage;
+        float DamageCooldown;
+		int LastShot;
+        float DamageRandomModifier;
+        int Range;
 
         // Movement
         bool            IsPlaced;
         direction Direction;
         float MoveCooldown;
+		int LastMove;
+
+		float DestX;
+
+		//Events
+		bool OnInit();
+		void OnLoop();
+		void OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode);
 
 
     protected:
     private:
+		void UseAction();
+		void UseSpecial();
+		void UseMove();
+		void UseTurn();
 
 };
 

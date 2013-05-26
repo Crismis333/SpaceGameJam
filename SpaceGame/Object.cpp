@@ -119,6 +119,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, int Fr
 	obj->Y = Y;
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
+	obj->OnInit();
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox) {
@@ -140,6 +141,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	}
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
+	obj->OnInit();
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
@@ -164,6 +166,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	}
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
+	obj->OnInit();
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA) {
@@ -185,6 +188,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	}
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
+	obj->OnInit();
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA) {
@@ -209,6 +213,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	}
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
+	obj->OnInit();
 }
 
 void Object::Destroy() {

@@ -21,7 +21,7 @@ class Room {
 		void OnCleanup();
 		int GetXTile(float x);
 		int GetYTile(float x);
-
+		float GetFloorHeight(int level);
 		void OccupyTile(Object * object, int y, int x);
 		void LeaveTile(Object * object, int y, int x);
 		bool TileIsFree(Object * object, int y, int x);

@@ -13,15 +13,14 @@
 #endif
 
 class FPS {
-	private:
+	public:
 		int             LastLoopTime;
 		int             CurrentLoopTime;
 		int             FPSval;
 		int             Frames;
 		int             TotalFrames;
 		float           SpeedFactor;
-
-	public:
+	
 		//Vars
 		static FPS		FPSControl;
 
