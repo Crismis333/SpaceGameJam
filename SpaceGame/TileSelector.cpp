@@ -47,7 +47,8 @@ void TileSelector::OnLButtonDown(int mX, int mY) {
                 Soldier* o = App::Application.SelectedSoldier;
                 if (CROOM->TileIsFree(o, y, x)) {
                     if (!o->IsPlaced) {
-                        const char * img = (std::string("./gfx/Soldier/SoldierStill") + o->bmSuffix + ".png").c_str();
+						std::string s = std::string("./gfx/Soldier/SoldierStill") + o->bmSuffix + ".png";
+                        const char * img = s.c_str();
                         Object::Instantiate(o, img, (float)CalcX(mX)+Width/2, (float)CalcY(mY)+Height/2, NULL, MIDDLECENTER);
                         CROOM->OccupyTile(o, y, x);
                     }
