@@ -9,6 +9,8 @@ App::App() {
 	CurrentRoom = &InitialRoom;
 
 	Running = true;
+
+	TS = TileSelector(16,32);
 }
 
 int App::OnExecute() {
@@ -18,9 +20,11 @@ int App::OnExecute() {
 
 	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
 
-	Object::Instantiate(&Test, "./TestSprite.png", 0.0f, 0.0f, NULL, MIDDLECENTER);
+	Object::Instantiate(&Test, "./HUD.png");
 
 	Object::Instantiate(&Test2, "./TestSprite.png", 200, 200, NULL, MIDDLECENTER);
+
+	Object::Instantiate(&TS, NULL, 100, 100, NULL, UPPERLEFT);
 
 	SDL_Event Ev;
 

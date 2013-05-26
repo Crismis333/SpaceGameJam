@@ -77,8 +77,6 @@ class Object : public Event {
 
 		//Events
 		void OnEvent(SDL_Event* Ev);
-
-		void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
  
 	protected:
         int			Col_X;
