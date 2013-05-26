@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "Event.h"
 #include "FPS.h"
+#include "CAnimation.h"
 
 #include <vector>
 
@@ -49,6 +50,8 @@ class Object : public Event {
 
 		bool		Dead;
 
+		CAnimation* Animation;
+
 		Sprite*		Spr;
 
 		//Methods
@@ -68,9 +71,15 @@ class Object : public Event {
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y);
 
+		static void Instantiate(Object* obj,const char* file, float X, float Y, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
+
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox);
+		
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA);
+
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA);
 
 		void Destroy();
 
