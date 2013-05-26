@@ -24,6 +24,8 @@ class TileSelector : public Object {
 
 		void OnLButtonDown(int mX, int mY);
 
+		void OnRButtonDown(int mX, int mY);
+
 	private:
 		int CalcX(int x);
 

@@ -9,8 +9,6 @@ App::App() {
 	CurrentRoom = &InitialRoom;
 
 	Running = true;
-
-	TS = TileSelector(32,32);
 }
 
 int App::OnExecute() {
@@ -18,13 +16,7 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Object::Instantiate(&Test, "./HUD.png");
-
-	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
-
-	Object::Instantiate(&Test2, "./TestSprite.png", 200, 200, NULL, MIDDLECENTER);
-
-	Object::Instantiate(&TS, NULL, 100, 100, NULL, UPPERLEFT);
+	InitGame();
 
 	SDL_Event Ev;
 
@@ -51,4 +43,23 @@ void App::GotoRoom(Room* Room) {
 
 SDL_Surface* App::GetDisplay() {
 	return Display;
+}
+
+void App::InitGame() {
+	Object* Test = new Object();
+	TileSelector* TS = new TileSelector(32,32);
+
+	Object* Floor1 = new Object();
+	Object* Floor2 = new Object();
+	Object* Floor3 = new Object();
+	Object* Floor4 = new Object();
+	
+	Object::Instantiate(Floor1,"./gfx/FloorPurple.png",33,16);
+	Object::Instantiate(Floor2,"./gfx/FloorGreen.png",33,144);
+	Object::Instantiate(Floor3,"./gfx/FloorRed.png",33,272);
+	Object::Instantiate(Floor4,"./gfx/FloorYellow.png",33,400);
+
+	Object::Instantiate(Test, "./gfx/HUD.png");
+	Object::Instantiate(TS, NULL, -20, -20, NULL, UPPERLEFT);
+
 }

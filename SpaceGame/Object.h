@@ -72,6 +72,8 @@ class Object : public Event {
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA);
 
+		void Destroy();
+
 		//Collision
 		virtual bool OnCollision(Object* Obj);
 
