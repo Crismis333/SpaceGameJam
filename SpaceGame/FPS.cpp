@@ -48,3 +48,7 @@ float FPS::ConvertSpeed(float Speed) {
 float FPS::GetSpeedFactor() {
 	return SpeedFactor;
 }
+
+float FPS::GetDeltaTime() {
+	return (CurrentLoopTime-LastLoopTime)/1000.0f;
+}

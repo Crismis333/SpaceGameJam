@@ -48,6 +48,7 @@ SDL_Surface* App::GetDisplay() {
 void App::InitGame() {
 	Object* Test = new Object();
 	TileSelector* TS = new TileSelector(32,32);
+	Spawner* S = new Spawner();
 
 	Object* Floor1 = new Object();
 	Object* Floor2 = new Object();
@@ -60,6 +61,7 @@ void App::InitGame() {
 	Object::Instantiate(Floor4,"./gfx/FloorYellow.png",33,400);
 
 	Object::Instantiate(Test, "./gfx/HUD.png");
-	Object::Instantiate(TS, NULL, -20, -20, NULL, UPPERLEFT);
+	Object::Instantiate(TS, NULL, -20, -20);
+	Object::Instantiate(S, NULL);
 
 }

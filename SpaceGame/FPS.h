@@ -12,7 +12,6 @@
 	#include <SDL/SDL_image.h>
 #endif
 
-
 class FPS {
 	private:
 		int             LastLoopTime;
@@ -34,6 +33,7 @@ class FPS {
 		int GetFrames();
 		float ConvertSpeed(float Speed);
 		float GetSpeedFactor();
+		float GetDeltaTime();
 };
 
 #endif
