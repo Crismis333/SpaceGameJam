@@ -62,13 +62,15 @@ void Object::OnLoop() {
 }
 
 void Object::OnRender(SDL_Surface* display) {
-	if (Spr)
+	if (Spr) {
 		if (Animation) {
 			Spr->OnDraw(display, (int) X, (int) Y, Animation->GetCurrentFrame()*(Width+1), 0, Width, Height);
 			Animation->OnAnimate();
 		}
-		else
+		else {
 			Spr->OnDraw(display, (int) X, (int) Y);
+        }
+    }
 }
 
 void Object::OnCleanup() {
