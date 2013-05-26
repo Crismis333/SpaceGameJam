@@ -71,15 +71,15 @@ class Object : public Event {
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y);
 
-		static void Instantiate(Object* obj,const char* file, float X, float Y, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
+		static void Instantiate(Object* obj,const char* file, float X, float Y, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox);
 		
-		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA);
 
-		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA);
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA);
 
 		void Destroy();
 
@@ -97,9 +97,9 @@ class Object : public Event {
 
 		void SetSprite(char* file, SpriteAnchor SA);
 		
-		void SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
+		void SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
 		
-		void SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA);
+		void SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA);
 
 		//Events
 		void OnEvent(SDL_Event* Ev);

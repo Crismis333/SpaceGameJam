@@ -102,7 +102,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y) {
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
-void Object::Instantiate(Object* obj, const char* file, float X, float Y, int FrameCount, float SpriteX, float SpriteY, int FrameRate) {
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
 	if (file) {
 		obj->Spr = new Sprite(file, UPPERLEFT);
 
@@ -140,7 +140,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
-void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate) {
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
 	if (file) {
 		obj->Spr = new Sprite(file, UPPERLEFT);
 
@@ -185,7 +185,7 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
-void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA) {
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA) {
 	if (file) {
 		obj->Spr = new Sprite(file, SA);
 
@@ -390,7 +390,7 @@ void Object::SetSprite(char* file, SpriteAnchor SA) {
 	}
 }
 
-void Object::SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate) {
+void Object::SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
 	if (file) {
 		Spr = new Sprite(file, UPPERLEFT);
 
@@ -406,7 +406,7 @@ void Object::SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY,
 	}
 }
 
-void Object::SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA) {
+void Object::SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA) {
 	if (file) {
 		Spr = new Sprite(file, SA);
 
