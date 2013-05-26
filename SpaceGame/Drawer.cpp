@@ -9,9 +9,9 @@ void Drawer::SetColor(int R, int G, int B) {
 
 void Drawer::Point(int X, int Y)
 {
-	if (X >= 640 || X < 0)
+	if (X >= SCREEN_WIDTH || X < 0)
 		return;
-	if (Y >= 480 || Y < 0)
+	if (Y >= SCREEN_HEIGHT || Y < 0)
 		return;
 
 	Uint32 *pixmem32;

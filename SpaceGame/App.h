@@ -8,6 +8,7 @@
 #include "Room.h"
 #include <math.h>
 #include "Alien.h"
+#include "TileSelector.h"
 
 class App : public Event {
 	private:
@@ -20,6 +21,7 @@ class App : public Event {
 		Object			Test;
 		Object			Test2;
 		Alien			Atest;
+		TileSelector	TS;
 		Room			TestRoom;
 
 	public:

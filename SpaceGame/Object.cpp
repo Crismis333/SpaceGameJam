@@ -69,19 +69,23 @@ void Object::OnCleanup() {
 
 //Instantiate
 void Object::Instantiate(Object* obj, const char* file) {
-	obj->Spr = new Sprite(file, UPPERLEFT);
+	if (file) {
+		obj->Spr = new Sprite(file, UPPERLEFT);
 
-	obj->Width = obj->Spr->SpriteW;
-	obj->Height = obj->Spr->SpriteH;
+		obj->Width = obj->Spr->SpriteW;
+		obj->Height = obj->Spr->SpriteH;
+	}
 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y) {
-	obj->Spr = new Sprite(file, UPPERLEFT);
+	if (file) {
+		obj->Spr = new Sprite(file, UPPERLEFT);
 
-	obj->Width = obj->Spr->SpriteW;
-	obj->Height = obj->Spr->SpriteH;
+		obj->Width = obj->Spr->SpriteW;
+		obj->Height = obj->Spr->SpriteH;
+	}
 
 	obj->X = X;
 	obj->Y = Y;
@@ -90,10 +94,12 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y) {
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox) {
-	obj->Spr = new Sprite(file, UPPERLEFT);
+	if (file) {
+		obj->Spr = new Sprite(file, UPPERLEFT);
 
-	obj->Width = obj->Spr->SpriteW;
-	obj->Height = obj->Spr->SpriteH;
+		obj->Width = obj->Spr->SpriteW;
+		obj->Height = obj->Spr->SpriteH;
+	}
 
 	obj->X = X;
 	obj->Y = Y;
@@ -109,10 +115,12 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 }
 
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA) {
-	obj->Spr = new Sprite(file, SA);
+	if (file) {
+		obj->Spr = new Sprite(file, SA);
 
-	obj->Width = obj->Spr->SpriteW;
-	obj->Height = obj->Spr->SpriteH;
+		obj->Width = obj->Spr->SpriteW;
+		obj->Height = obj->Spr->SpriteH;
+	}
 
 	obj->X = X;
 	obj->Y = Y;
@@ -271,11 +279,4 @@ bool Object::Collides(int oX, int oY, int oW, int oH) {
     if (left1 > right2) return false;
  
     return true;
-}
-
-//Testing Purposes
-void Object::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {
-	if (this->ID == 1)
-		return;
-	OnMove((mX-X),(mY-Y));
 }
