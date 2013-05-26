@@ -4,7 +4,7 @@ Soldier::Soldier()
 {
     Type = SOLDIER;
     SetVarsFromType();
-    Health = MaxHealth;
+    Health = (float)MaxHealth;
 }
 
 Soldier::Soldier(soldierType Type, int Health) {

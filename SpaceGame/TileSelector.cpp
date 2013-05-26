@@ -25,7 +25,7 @@ TileSelector::TileSelector(int W, int H) {
 
 void TileSelector::OnRender(SDL_Surface* display) {
 	Drawer::SetColor(0,0,0);
-	Drawer::Rectangle(Rect(X,Y,Width,Height), false);
+	Drawer::Rectangle(Rect((int)X,(int)Y,Width,Height), false);
 }
 
 void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {

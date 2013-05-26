@@ -33,7 +33,7 @@ class Soldier : public Object
 
         // Movement
         direction Direction;
-        int MoveCooldown;
+        float MoveCooldown;
 
 
     protected:
