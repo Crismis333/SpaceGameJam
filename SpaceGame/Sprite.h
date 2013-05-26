@@ -49,13 +49,13 @@ class Sprite {
 
 struct Rect {
 	public:
-		float X;
-		float Y;
+		int X;
+		int Y;
 		int Width;
 		int Height;
 
 		Rect();
-		Rect(float X, float Y, int Width, int Height);
+		Rect(int X, int Y, int Width, int Height);
 };
 
 #endif

@@ -44,6 +44,8 @@ class App : public Event {
 
 		void GotoRoom(Room* Room);
 
+		SDL_Surface* GetDisplay();
+
 		//Events
 		void OnExit();
 };

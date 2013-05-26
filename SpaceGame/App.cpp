@@ -16,10 +16,6 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Room::RoomList.push_back(&TestRoom);
-
-	GotoRoom(&TestRoom);
-
 	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
 
 	Object::Instantiate(&Test, "./TestSprite.png", 0.0f, 0.0f, NULL, MIDDLECENTER);
@@ -47,4 +43,8 @@ int App::OnExecute() {
 void App::GotoRoom(Room* Room) {
 	CurrentRoom = Room;
 	CurrentRoom->OnInit();
+}
+
+SDL_Surface* App::GetDisplay() {
+	return Display;
 }

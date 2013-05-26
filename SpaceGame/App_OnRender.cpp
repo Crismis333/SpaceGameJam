@@ -1,4 +1,5 @@
 #include "App.h"
+#include "Drawer.h"
 
 void App::OnRender() {
 	CurrentRoom->OnRender(Display);

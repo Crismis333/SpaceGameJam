@@ -99,8 +99,8 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	obj->Y = Y;
 
 	if (BBox) {
-		obj->Col_X = (int)BBox->X;
-		obj->Col_Y = (int)BBox->Y;
+		obj->Col_X = BBox->X;
+		obj->Col_Y = BBox->Y;
 		obj->Col_Width = BBox->Width;
 		obj->Col_Height = BBox->Height;
 	}
@@ -118,8 +118,8 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	obj->Y = Y;
 
 	if (BBox) {
-		obj->Col_X = (int)BBox->X;
-		obj->Col_Y = (int)BBox->Y;
+		obj->Col_X = BBox->X;
+		obj->Col_Y = BBox->Y;
 		obj->Col_Width = BBox->Width;
 		obj->Col_Height = BBox->Height;
 	}

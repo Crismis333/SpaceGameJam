@@ -114,7 +114,7 @@ Rect::Rect() {
 	Height = 0;
 }
 
-Rect::Rect(float X, float Y, int W, int H) {
+Rect::Rect(int X, int Y, int W, int H) {
 	this->X = X;
 	this->Y = Y;
 	this->Width = W;
