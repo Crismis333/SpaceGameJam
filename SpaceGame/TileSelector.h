@@ -21,6 +21,13 @@ class TileSelector : public Object {
 
 		//Events
 		void OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle);
+
+		void OnLButtonDown(int mX, int mY);
+
+	private:
+		int CalcX(int x);
+
+		int CalcY(int y);
 };
 
 #endif

@@ -29,25 +29,28 @@ void TileSelector::OnRender(SDL_Surface* display) {
 }
 
 void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bool Right, bool Middle) {
-	int mouseX = mX;
-	int mouseY = mY;
+	X = (float)CalcX(mX);
+	Y = (float)CalcY(mY);
+}
 
-	if (mouseX <= padLeft)
-		mouseX = padLeft;
-	if (mouseX > SCREEN_WIDTH - padRight - 1)
-		mouseX = SCREEN_WIDTH - padRight - 1;
+void TileSelector::OnLButtonDown(int mX, int mY) {
+	Object* o = new Object();
+	Object::Instantiate(o,"./TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
+}
 
-	if (mouseY <= padTop)
-		mouseY = padTop;
-	if (mouseY > SCREEN_HEIGHT - padBot - 1)
-		mouseY = SCREEN_HEIGHT - padBot - 1;
+int TileSelector::CalcX(int x) {
+	if (x <= padLeft)
+		x = padLeft;
+	if (x > SCREEN_WIDTH - padRight - 1)
+		x = SCREEN_WIDTH - padRight - 1;
 
-	float newX = 0;
-	float newY = 0;
+	return ((x / Width) * Width) + 1;
+}
+int TileSelector::CalcY(int y) {
+	if (y <= padTop)
+		y = padTop;
+	if (y > SCREEN_HEIGHT - padBot - 1)
+		y = SCREEN_HEIGHT - padBot - 1;
 
-	newX = (float)(mouseX / Width) * Width;
-	newY = (float)(mouseY / (Height + padBetween)) * (Height + padBetween);
-
-	X = newX + 1;
-	Y = newY + padTop + 1;
+	return ((y / (Height + padBetween)) * (Height + padBetween)) + padTop + 1;
 }

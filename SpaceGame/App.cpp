@@ -10,7 +10,7 @@ App::App() {
 
 	Running = true;
 
-	TS = TileSelector(16,32);
+	TS = TileSelector(32,32);
 }
 
 int App::OnExecute() {
@@ -18,9 +18,9 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
-
 	Object::Instantiate(&Test, "./HUD.png");
+
+	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
 
 	Object::Instantiate(&Test2, "./TestSprite.png", 200, 200, NULL, MIDDLECENTER);
 
