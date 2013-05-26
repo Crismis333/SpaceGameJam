@@ -2,7 +2,7 @@
 
 Soldier::Soldier()
 {
-    Type = SOLDIER;
+    Type = SOLDIER_TYPE_SOLDIER;
     ObjectType = OBJECT_TYPE_SOLDIER;
     SetVarsFromType();
     Health = (float)MaxHealth;
@@ -17,7 +17,7 @@ Soldier::Soldier(soldierType Type, int Health) {
 
 void Soldier::SetVarsFromType() {
     switch (Type) {
-        case HEAVY:
+        case SOLDIER_TYPE_HEAVY:
             // Health
             MaxHealth = 130;
             Armour = 2;
@@ -29,10 +29,10 @@ void Soldier::SetVarsFromType() {
             Range = 4;
 
             // Movement
-            Direction = RIGHT;
+            Direction = DIRECTION_RIGHT;
             MoveCooldown = 0.8f;
         break;
-        case SOLDIER:
+        case SOLDIER_TYPE_SOLDIER:
             // Health
             MaxHealth = 100;
             Armour = 1;
@@ -44,10 +44,10 @@ void Soldier::SetVarsFromType() {
             Range = 6;
 
             // Movement
-            Direction = RIGHT;
+            Direction = DIRECTION_RIGHT;
             MoveCooldown = 0.6f;
         break;
-        case HEALER:
+        case SOLDIER_TYPE_HEALER:
             // Health
             MaxHealth = 100;
             Armour = 0;
@@ -59,10 +59,10 @@ void Soldier::SetVarsFromType() {
             Range = 2;
 
             // Movement
-            Direction = RIGHT;
+            Direction = DIRECTION_RIGHT;
             MoveCooldown = 0.5f;
         break;
-        case STEALTH:
+        case SOLDIER_TYPE_STEALTH:
             // Health
             MaxHealth = 90;
             Armour = 1;
@@ -74,10 +74,10 @@ void Soldier::SetVarsFromType() {
             Range = 5;
 
             // Movement
-            Direction = RIGHT;
+            Direction = DIRECTION_RIGHT;
             MoveCooldown = 0.4f;
         break;
-        case SNIPER:
+        case SOLDIER_TYPE_SNIPER:
             // Health
             MaxHealth = 80;
             Armour = 0;
@@ -89,7 +89,7 @@ void Soldier::SetVarsFromType() {
             Range = 13;
 
             // Movement
-            Direction = RIGHT;
+            Direction = DIRECTION_RIGHT;
             MoveCooldown = 0.8f;
         break;
     }

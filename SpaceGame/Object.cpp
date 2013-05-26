@@ -140,6 +140,9 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 
 void Object::Destroy() {
 	App::Application.CurrentRoom->RemoveObject(this);
+	int x = App::Application.CurrentRoom->GetXTile(X);
+	int y = App::Application.CurrentRoom->GetYTile(Y);
+	App::Application.CurrentRoom->LeaveTile(this, y, x);
 	OnCleanup();
 }
 

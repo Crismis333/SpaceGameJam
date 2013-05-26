@@ -11,6 +11,11 @@
 #include "TileSelector.h"
 #include "Soldier.h"
 
+enum gameMode {
+    GAME_MODE_PLAN = 1,
+    GAME_MODE_PLAY = 2
+};
+
 class App : public Event {
 	private:
 		bool			Running;
@@ -23,6 +28,7 @@ class App : public Event {
 		static App Application;
 
 		Room*			CurrentRoom;
+		gameMode        GameMode;
 
 		//Methods
 		App();

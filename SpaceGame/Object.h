@@ -18,7 +18,10 @@ enum {
 };
 
 enum objectType {
-    OBJECT_TYPE_UNDEFINED, OBJECT_TYPE_ALIEN, OBJECT_TYPE_SOLDIER
+    OBJECT_TYPE_UNDEFINED,
+    OBJECT_TYPE_ALIEN,
+    OBJECT_TYPE_SOLDIER,
+    OBJECT_TYPE_DOOR
 };
 
 class Object : public Event {

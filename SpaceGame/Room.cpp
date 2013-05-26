@@ -77,21 +77,38 @@ void Room::OccupyTile(Object * object, int y, int x) {
 }
 
 void Room::LeaveTile(Object * object, int y, int x) {
-    ObjectGrid[y][x].erase(std::remove(ObjectGrid[y][x].begin(), ObjectGrid[y][x].end(), object), ObjectGrid[y][x].end());
+    for (unsigned int i = 0; i < ObjectGrid[y][x].size(); i++) {
+        if (ObjectGrid[y][x][i] == object) {
+            ObjectGrid[y][x].erase(std::remove(ObjectGrid[y][x].begin(), ObjectGrid[y][x].end(), object), ObjectGrid[y][x].end());
+            return;
+        }
+    }
 }
 
 bool Room::TileIsFree(Object * object, int y, int x) {
     if (ObjectGrid[y][x].size() > 0) {
-        if (object->ObjectType == OBJECT_TYPE_ALIEN) {
-            for (unsigned int i = 0; i < ObjectGrid[y][x].size(); i++) {
-                if (object->ObjectType != OBJECT_TYPE_ALIEN) {
-                    return false;
+        switch (object->ObjectType) {
+            case OBJECT_TYPE_ALIEN:
+                for (unsigned int i = 0; i < ObjectGrid[y][x].size(); i++) {
+                    if (object->ObjectType == OBJECT_TYPE_SOLDIER) {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        }
-        else {
-            return false;
+                return true;
+            break;
+
+            case OBJECT_TYPE_SOLDIER:
+                for (unsigned int i = 0; i < ObjectGrid[y][x].size(); i++) {
+                    if (object->ObjectType != OBJECT_TYPE_DOOR) {
+                        return false;
+                    }
+                }
+                return true;
+            break;
+
+            default:
+                return false;
+            break;
         }
     }
     else {

@@ -3,10 +3,14 @@
 #include "Object.h"
 
 enum soldierType {
-    HEAVY, SOLDIER, HEALER, STEALTH, SNIPER
+    SOLDIER_TYPE_HEAVY,
+    SOLDIER_TYPE_SOLDIER,
+    SOLDIER_TYPE_HEALER,
+    SOLDIER_TYPE_STEALTH,
+    SOLDIER_TYPE_SNIPER
 };
 enum direction {
-    LEFT, RIGHT
+    DIRECTION_LEFT, DIRECTION_RIGHT
 };
 
 class Soldier : public Object

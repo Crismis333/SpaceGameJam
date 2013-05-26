@@ -7,6 +7,7 @@ App::App() {
 
 	Room::RoomList.push_back(&InitialRoom);
 	CurrentRoom = &InitialRoom;
+	GameMode = GAME_MODE_PLAN;
 
 	Running = true;
 }
@@ -53,7 +54,7 @@ void App::InitGame() {
 	Object* Floor2 = new Object();
 	Object* Floor3 = new Object();
 	Object* Floor4 = new Object();
-	
+
 	Object::Instantiate(Floor1,"./gfx/FloorPurple.png",33,16);
 	Object::Instantiate(Floor2,"./gfx/FloorGreen.png",33,144);
 	Object::Instantiate(Floor3,"./gfx/FloorRed.png",33,272);

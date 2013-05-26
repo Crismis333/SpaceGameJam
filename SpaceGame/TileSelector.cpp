@@ -1,6 +1,7 @@
 #include "TileSelector.h"
 #include "Drawer.h"
 #include "App.h"
+#define CROOM App::Application.CurrentRoom
 
 TileSelector::TileSelector() {
 	padLeft = 32;
@@ -36,16 +37,51 @@ void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bo
 }
 
 void TileSelector::OnLButtonDown(int mX, int mY) {
-	Object* o = new Object();
-	Object::Instantiate(o,"./gfx/TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
+	int x = CROOM->GetXTile(mX);
+	int y = CROOM->GetYTile(mY);
+
+    switch (App::Application.GameMode) {
+        case GAME_MODE_PLAN:
+            {
+                Soldier* o = new Soldier(SOLDIER_TYPE_SOLDIER, 1000);
+                if (CROOM->TileIsFree(o, y, x)) {
+                    Object::Instantiate(o,"./gfx/TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
+                    CROOM->OccupyTile(o, y, x);
+
+                    #ifdef PRINTDEBUG
+                        printf("Tile occupied by new object\n");
+                    #endif
+                }
+                else {
+                    #ifdef PRINTDEBUG
+                        printf("Tile is already occupied\n");
+                    #endif
+                }
+            }
+        break;
+        case GAME_MODE_PLAY:
+            // Do nothing yet
+            return;
+        break;
+    }
 }
 
 void TileSelector::OnRButtonDown(int mX, int mY) {
-	for (unsigned int i = 0; i < App::Application.CurrentRoom->ObjectList.size(); i++) {
-		if (App::Application.CurrentRoom->ObjectList[i]->X == ((float)CalcX(mX) + Width/2) &&
-			App::Application.CurrentRoom->ObjectList[i]->Y == ((float)CalcY(mY) + Height/2))
-			App::Application.CurrentRoom->ObjectList[i]->Destroy();
-	}
+    int x = CROOM->GetXTile(mX);
+	int y = CROOM->GetYTile(mY);
+
+    switch (App::Application.GameMode) {
+        case GAME_MODE_PLAN:
+            for (unsigned int i = 0; i < CROOM->ObjectGrid[y][x].size(); i++) {
+                if (CROOM->ObjectGrid[y][x][i]->ObjectType == OBJECT_TYPE_SOLDIER) {
+                    CROOM->ObjectGrid[y][x][i]->Destroy();
+                }
+            }
+        break;
+        case GAME_MODE_PLAY:
+            // Do nothing yet
+        break;
+    }
 }
 
 int TileSelector::CalcX(int x) {
