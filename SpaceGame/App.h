@@ -8,6 +8,7 @@
 #include "Room.h"
 #include <math.h>
 #include "Alien.h"
+#include "Spawner.h"
 #include "TileSelector.h"
 #include "Soldier.h"
 

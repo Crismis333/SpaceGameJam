@@ -4,6 +4,7 @@
 #include "Sprite.h"
 #include "Event.h"
 #include "FPS.h"
+#include "CAnimation.h"
 
 #include <vector>
 
@@ -52,6 +53,8 @@ class Object : public Event {
 
 		bool		Dead;
 
+		CAnimation* Animation;
+
 		Sprite*		Spr;
 
 		//Methods
@@ -71,9 +74,15 @@ class Object : public Event {
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y);
 
+		static void Instantiate(Object* obj,const char* file, float X, float Y, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
+
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox);
+		
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
 
 		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA);
+
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA);
 
 		void Destroy();
 
@@ -85,6 +94,15 @@ class Object : public Event {
         void StopMove();
 
         bool Collides(int oX, int oY, int oW, int oH);
+
+		//Drawing
+		void SetSprite(char* file);
+
+		void SetSprite(char* file, SpriteAnchor SA);
+		
+		void SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate);
+		
+		void SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA);
 
 		//Events
 		void OnEvent(SDL_Event* Ev);

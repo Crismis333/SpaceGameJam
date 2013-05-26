@@ -6,6 +6,7 @@ int Object::IDcount = 0;
 
 Object::Object() {
 	Spr = NULL;
+	Animation = NULL;
 
 	Flags = OBJECT_FLAG_NONE;
 
@@ -62,7 +63,12 @@ void Object::OnLoop() {
 
 void Object::OnRender(SDL_Surface* display) {
 	if (Spr)
-		Spr->OnDraw(display, (int) X, (int) Y);
+		if (Animation) {
+			Spr->OnDraw(display, (int) X, (int) Y, Animation->GetCurrentFrame()*(Width+1), 0, Width, Height);
+			Animation->OnAnimate();
+		}
+		else
+			Spr->OnDraw(display, (int) X, (int) Y);
 }
 
 void Object::OnCleanup() {
@@ -96,6 +102,23 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y) {
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
+	if (file) {
+		obj->Spr = new Sprite(file, UPPERLEFT);
+
+		obj->Width = SpriteX;
+		obj->Height = SpriteY;
+		obj->Animation = new CAnimation();
+		obj->Animation->MaxFrames = FrameCount;
+		obj->Animation->SetFrameRate(FrameRate);
+	}
+
+	obj->X = X;
+	obj->Y = Y;
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox) {
 	if (file) {
 		obj->Spr = new Sprite(file, UPPERLEFT);
@@ -117,12 +140,60 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
+	if (file) {
+		obj->Spr = new Sprite(file, UPPERLEFT);
+
+		obj->Width = SpriteX;
+		obj->Height = SpriteY;
+		obj->Animation = new CAnimation();
+		obj->Animation->MaxFrames = FrameCount;
+		obj->Animation->SetFrameRate(FrameRate);
+	}
+
+	obj->X = X;
+	obj->Y = Y;
+
+	if (BBox) {
+		obj->Col_X = BBox->X;
+		obj->Col_Y = BBox->Y;
+		obj->Col_Width = BBox->Width;
+		obj->Col_Height = BBox->Height;
+	}
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
 void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA) {
 	if (file) {
 		obj->Spr = new Sprite(file, SA);
 
 		obj->Width = obj->Spr->SpriteW;
 		obj->Height = obj->Spr->SpriteH;
+	}
+
+	obj->X = X;
+	obj->Y = Y;
+
+	if (BBox) {
+		obj->Col_X = BBox->X;
+		obj->Col_Y = BBox->Y;
+		obj->Col_Width = BBox->Width;
+		obj->Col_Height = BBox->Height;
+	}
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA) {
+	if (file) {
+		obj->Spr = new Sprite(file, SA);
+
+		obj->Width = SpriteX;
+		obj->Height = SpriteY;
+		obj->Animation = new CAnimation();
+		obj->Animation->MaxFrames = FrameCount;
+		obj->Animation->SetFrameRate(FrameRate);
 	}
 
 	obj->X = X;
@@ -290,4 +361,66 @@ bool Object::Collides(int oX, int oY, int oW, int oH) {
     if (left1 > right2) return false;
 
     return true;
+}
+
+// Drawing
+
+void Object::SetSprite(char* file) {
+	if (file) {
+		Spr = new Sprite(file, UPPERLEFT);
+
+		Width = Spr->SpriteW;
+		Height = Spr->SpriteW;
+		Animation = NULL;
+	}
+	else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, SpriteAnchor SA) {
+	if (file) {
+		Spr = new Sprite(file, SA);
+
+		Width = Spr->SpriteW;
+		Height = Spr->SpriteW;
+		Animation = NULL;
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate) {
+	if (file) {
+		Spr = new Sprite(file, UPPERLEFT);
+
+		Width = SpriteX;
+		Height = SpriteY;
+		Animation = new CAnimation();
+		Animation->MaxFrames = FrameCount;
+		Animation->SetFrameRate(FrameRate);
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, int FrameCount, int SpriteX, int SpriteY, int FrameRate, SpriteAnchor SA) {
+	if (file) {
+		Spr = new Sprite(file, SA);
+
+		Width = SpriteX;
+		Height = SpriteY;
+		Animation = new CAnimation();
+		Animation->MaxFrames = FrameCount;
+		Animation->SetFrameRate(FrameRate);
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
 }
