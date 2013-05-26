@@ -1,4 +1,7 @@
 #include "Soldier.h"
+#include "App.h"
+
+#define CROOM App::Application.CurrentRoom
 
 Soldier::Soldier()
 {
@@ -93,4 +96,141 @@ void Soldier::SetVarsFromType() {
             MoveCooldown = 0.8f;
         break;
     }
+}
+
+bool Soldier::OnInit() {
+	DestX = X;
+	return true;
+}
+
+void Soldier::OnLoop() {
+	super::OnLoop();
+
+	if (DestX != X)
+	{
+		float dX = std::abs(DestX - X);
+		float sX = (Width / MoveCooldown) * FPS::FPSControl.GetSpeedFactor();
+
+		if (dX < sX) 
+			DestX = X;
+		else
+			X += sX * (DestX - X) / dX;
+
+		
+	}
+
+	int tileX = CROOM->GetXTile(X);
+	int floorY = CROOM->GetYTile(Y);
+
+	int minX =  tileX - Range;
+	if (minX < 0) minX = 0;
+
+	int maxX = tileX + Range;
+	if (maxX >= 22) maxX = 22;
+
+	bool stop = false;
+
+	switch (Direction)
+	{
+	case DIRECTION_LEFT:
+		for (int i = tileX - 1; i >= minX; i--) {
+			for (unsigned int j = 0; j < CROOM->ObjectGrid[floorY][i].size(); j++)
+			{
+				if (CROOM->ObjectGrid[floorY][i][j]->ObjectType == OBJECT_TYPE_SOLDIER) {
+					stop = true;
+					break;
+				}
+
+				if (CROOM->ObjectGrid[floorY][i][j]->ObjectType == OBJECT_TYPE_ALIEN) {
+					if (LastShot + DamageCooldown*1000 < FPS::FPSControl.CurrentLoopTime) {
+						//DMG ALIEN
+						printf("SHOOT ALIEN \n");
+						LastShot = FPS::FPSControl.CurrentLoopTime;
+					}
+					stop = true;
+					break;
+				}
+			}
+			if (stop) break;
+		}
+		break;
+	case DIRECTION_RIGHT:
+		for (int i = tileX + 1; i <= maxX; i++) {
+			for (unsigned int j = 0; j < CROOM->ObjectGrid[floorY][i].size(); j++)
+			{
+				if (CROOM->ObjectGrid[floorY][i][j]->ObjectType == OBJECT_TYPE_SOLDIER) {
+					stop = true;
+					break;
+				}
+
+				if (CROOM->ObjectGrid[floorY][i][j]->ObjectType == OBJECT_TYPE_ALIEN) {
+					if (LastShot + DamageCooldown*1000 < FPS::FPSControl.CurrentLoopTime) {
+						//DMG ALIEN
+						printf("SHOOT ALIEN \n");
+						LastShot = FPS::FPSControl.CurrentLoopTime;
+					}
+					stop = true;
+					break;
+				}
+			}
+			if (stop) break;
+		}
+		break;
+	}
+}
+
+void Soldier::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
+	//if IsSelected
+	switch(sym) {
+		case SDLK_a: UseAction(); break;
+		case SDLK_s: UseSpecial(); break;
+		case SDLK_w: UseMove(); break;
+		case SDLK_q: UseTurn(); break;
+		default: break;
+	}
+}
+
+void Soldier::UseAction() {
+
+}
+
+void Soldier::UseSpecial() {
+}
+
+void Soldier::UseMove() {
+	if (LastMove + MoveCooldown*1000 < FPS::FPSControl.CurrentLoopTime) {
+		int tileX = CROOM->GetXTile(X);
+		int tileY = CROOM->GetYTile(Y);
+		if (Direction == DIRECTION_LEFT) {
+			if (tileX != 0) {
+				CROOM->LeaveTile(this,tileY,tileX);
+				CROOM->OccupyTile(this,tileY,tileX-1);
+				DestX -= 32;
+			}
+			else
+				return;
+		}
+		else {
+			if (tileX != 22) {
+				CROOM->LeaveTile(this,tileY,tileX);
+				CROOM->OccupyTile(this,tileY,tileX+1);
+				DestX += 32;
+			}
+			else
+				return;
+		}
+		LastMove = FPS::FPSControl.CurrentLoopTime;
+	}
+}
+
+void Soldier::UseTurn() {
+	if (LastMove + MoveCooldown*1000 < FPS::FPSControl.CurrentLoopTime) {
+		if (Direction == DIRECTION_LEFT) {
+			Direction = DIRECTION_RIGHT;
+		}
+		else {
+			Direction = DIRECTION_LEFT;
+		}
+		LastMove = FPS::FPSControl.CurrentLoopTime;
+	}
 }

@@ -37,8 +37,8 @@ void TileSelector::OnMouseMove(int mX, int mY, int relX, int relY, bool Left, bo
 }
 
 void TileSelector::OnLButtonDown(int mX, int mY) {
-	int x = CROOM->GetXTile(mX);
-	int y = CROOM->GetYTile(mY);
+	int x = CROOM->GetXTile((float)mX);
+	int y = CROOM->GetYTile((float)mY);
 
     switch (App::Application.GameMode) {
         case GAME_MODE_PLAN:

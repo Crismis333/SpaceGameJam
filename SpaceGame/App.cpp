@@ -51,6 +51,7 @@ void App::InitGame() {
 	TileSelector* TS = new TileSelector(32,32);
 	Spawner* S = new Spawner();
 	Alien* A = new Alien();
+	A->ObjectType = OBJECT_TYPE_ALIEN;
 
 	Object* Floor1 = new Object();
 	Object* Floor2 = new Object();
@@ -63,6 +64,8 @@ void App::InitGame() {
 	Object::Instantiate(Floor4,"./gfx/FloorYellow.png",33,400);
 
 	Object::Instantiate(A, "./gfx/SpaghettiFloating.png", 200,200, NULL, 6, 32, 32, 200, MIDDLECENTER);
+
+	CurrentRoom->OccupyTile(A,0,15);
 
 	Object::Instantiate(Test, "./gfx/HUD.png");
 	Object::Instantiate(TS, NULL, -20, -20);
