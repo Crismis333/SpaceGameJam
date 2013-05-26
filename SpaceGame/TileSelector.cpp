@@ -56,6 +56,7 @@ void TileSelector::OnLButtonDown(int mX, int mY) {
 
                         o->Y = (float)CalcY(mY)+Height/2;
                         o->X = (float)CalcX(mX)+Width/2;
+                        o->DestX = o->X;
                         CROOM->OccupyTile(o, y, x);
                     }
                     o->IsPlaced = true;

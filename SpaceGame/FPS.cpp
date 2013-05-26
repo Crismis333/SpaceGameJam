@@ -18,12 +18,12 @@ void FPS::OnFrameBegin() {
         FPSval = Frames;
         Frames = 0;
 
-        #ifdef PRINTDEBUG
+        /*#ifdef PRINTDEBUG
 			printf("Current FPS is: %d\n", FPSval);
 			printf("Object count: %u\n", (int) App::Application.CurrentRoom->ObjectList.size());
 			printf("ConvertSpeed Test (from 200 px/sec): %f\n", ConvertSpeed(200));
 			printf("Time increase: %d\n", CurrentLoopTime - LastLoopTime);
-		#endif
+		#endif*/
     }
 }
 

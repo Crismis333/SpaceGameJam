@@ -30,7 +30,7 @@ void Alien::OnLoop() {
 		App::Application.CurrentRoom->OccupyTile(this,currentFloor,currentTile);
 	}
 
-	if (changingFloor) 
+	if (changingFloor)
 	{
 		int mindist = -1;
 		int selected = -1;
@@ -51,14 +51,14 @@ void Alien::OnLoop() {
 	}
 
 	switch (state) {
-	case IDLE: 
+	case IDLE:
 		{
-			std::vector<std::vector<Object*>> v = App::Application.CurrentRoom->ObjectGrid[currentFloor];
+			std::vector<std::vector<Object*> > v = App::Application.CurrentRoom->ObjectGrid[currentFloor];
 			unsigned int i, j;
 			int mindist = -1;
 			for (i = 0; i < v.size(); i++)
 				for (j = 0; j < v[i].size(); j++)
-					if (v[i][j]->ObjectType = OBJECT_TYPE_SOLDIER)
+					if (v[i][j]->ObjectType == OBJECT_TYPE_SOLDIER)
 						if (mindist == -1 || mindist > (abs((int)j-currentTile))) {
 							mindist = abs((int)j-currentTile);
 							target = v[i][j];
@@ -66,14 +66,14 @@ void Alien::OnLoop() {
 						}
 			if (mindist == -1)
 			{
-				std::vector<std::vector<std::vector<Object*>>> v2 = App::Application.CurrentRoom->ObjectGrid;
+				std::vector<std::vector<std::vector<Object*> > > v2 = App::Application.CurrentRoom->ObjectGrid;
 				unsigned int k;
 				int mindfloordist = -1;
-				
+
 				for (k = 0; k < v2.size(); k++)
 					for (i = 0; i < v2[k].size(); i++)
 						for (j = 0; j < v2[k][i].size(); j++)
-							if (v2[k][i][j]->ObjectType = OBJECT_TYPE_SOLDIER)
+							if (v2[k][i][j]->ObjectType == OBJECT_TYPE_SOLDIER)
 								if (mindfloordist == -1 || mindfloordist > (abs((int)k-currentFloor))) {
 									mindfloordist = abs((int)k-currentFloor);
 									if (mindist == -1 || mindist > (abs((int)j-currentTile))) {
@@ -105,10 +105,10 @@ void Alien::OnLoop() {
 			int mindist = abs(currentTile - App::Application.CurrentRoom->GetXTile(target->X));
 			if (mindist > 2) {
 				unsigned int i, j;
-				std::vector<std::vector<Object*>> v = App::Application.CurrentRoom->ObjectGrid[currentFloor];
+				std::vector<std::vector<Object*> > v = App::Application.CurrentRoom->ObjectGrid[currentFloor];
 				for (i = 0; i < v.size(); i++)
 					for (j = 0; j < v[i].size(); j++)
-						if (v[i][j]->ObjectType = OBJECT_TYPE_SOLDIER)
+						if (v[i][j]->ObjectType == OBJECT_TYPE_SOLDIER)
 							if (mindist > (abs((int)j-currentTile)) + 1) {
 								mindist = abs((int)j-currentTile);
 								target = v[i][j];

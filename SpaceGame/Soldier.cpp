@@ -120,17 +120,16 @@ bool Soldier::OnInit() {
 void Soldier::OnLoop() {
 	super::OnLoop();
 
-	if (DestX != X)
-	{
-		float dX = std::abs(DestX - X);
+	if (DestX != X) {
+		float dX = abs((float) (DestX - X));
 		float sX = (Width / MoveCooldown) * FPS::FPSControl.GetSpeedFactor();
 
-		if (dX < sX) 
+		if (dX < sX)
 			DestX = X;
 		else
 			X += sX * (DestX - X) / dX;
 
-		
+
 	}
 
 	int tileX = CROOM->GetXTile(X);
@@ -212,14 +211,17 @@ void Soldier::UseSpecial() {
 }
 
 void Soldier::UseMove() {
-	if (LastMove + MoveCooldown*1000 < FPS::FPSControl.CurrentLoopTime) {
+	if (LastMove + MoveCooldown*1000 < FPS::FPSControl.CurrentLoopTime && DestX == X) {
+
+        printf("Moving!\n");
+
 		int tileX = CROOM->GetXTile(X);
 		int tileY = CROOM->GetYTile(Y);
 		if (Direction == DIRECTION_LEFT) {
 			if (tileX != 0) {
 				CROOM->LeaveTile(this,tileY,tileX);
 				CROOM->OccupyTile(this,tileY,tileX-1);
-				DestX -= 32;
+				DestX = (tileX - 1) * 32 + 33 + 16;
 			}
 			else
 				return;
@@ -228,7 +230,7 @@ void Soldier::UseMove() {
 			if (tileX != 22) {
 				CROOM->LeaveTile(this,tileY,tileX);
 				CROOM->OccupyTile(this,tileY,tileX+1);
-				DestX += 32;
+				DestX = (tileX + 1) * 32 + 33 + 16;
 			}
 			else
 				return;
