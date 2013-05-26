@@ -9,6 +9,8 @@ Object::Object() {
 
 	Flags = OBJECT_FLAG_NONE;
 
+	ObjectType = OBJECT_TYPE_UNDEFINED;
+
 	SpeedX = 0.0f;
 	SpeedY = 0.0f;
 

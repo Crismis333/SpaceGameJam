@@ -3,11 +3,13 @@
 Soldier::Soldier()
 {
     Type = SOLDIER;
+    ObjectType = OBJECT_TYPE_SOLDIER;
     SetVarsFromType();
     Health = (float)MaxHealth;
 }
 
 Soldier::Soldier(soldierType Type, int Health) {
+    ObjectType = OBJECT_TYPE_SOLDIER;
     this->Type = Type;
     SetVarsFromType();
     Health = std::min(MaxHealth, Health);

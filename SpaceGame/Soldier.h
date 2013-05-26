@@ -41,4 +41,6 @@ class Soldier : public Object
 
 };
 
+
+
 #endif // SOLDIER_H

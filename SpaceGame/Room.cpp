@@ -3,7 +3,14 @@
 std::vector<Room*> Room::RoomList;
 
 Room::Room() {
-	std::vector<Object*> ObjectList;
+	//std::vector<Object*> ObjectList;
+
+    // The grid has 4 levels
+    ObjectGrid.resize(4);
+    for (unsigned int i = 0; i < ObjectGrid.size(); i++) {
+        // Each level has 23 columns
+        ObjectGrid[i].resize(23);
+    }
 }
 
 Room::~Room() {
@@ -63,7 +70,40 @@ void Room::OnRender(SDL_Surface* display) {
 
 		ObjectList[i]->OnRender(display);
 	}
+}
 
+void Room::OccupyTile(Object * object, int y, int x) {
+    ObjectGrid[y][x].push_back(object);
+}
+
+void Room::LeaveTile(Object * object, int y, int x) {
+    ObjectGrid[y][x].erase(std::remove(ObjectGrid[y][x].begin(), ObjectGrid[y][x].end(), object), ObjectGrid[y][x].end());
+}
+
+bool Room::TileIsFree(Object * object, int y, int x) {
+    if (ObjectGrid[y][x].size() > 0) {
+        if (object->ObjectType == OBJECT_TYPE_ALIEN) {
+            for (unsigned int i = 0; i < ObjectGrid[y][x].size(); i++) {
+                if (object->ObjectType != OBJECT_TYPE_ALIEN) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return true;
+    }
+}
+
+int Room::GetXTile(float x) {
+    return std::max(0, std::min(22, ((int) x - 32) / 32));
+}
+int Room::GetYTile(float y) {
+	return std::min(3, (int) y / 128);
 }
 
 void Room::OnCleanup() {
