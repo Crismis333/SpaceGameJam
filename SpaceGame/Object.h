@@ -92,6 +92,15 @@ class Object : public Event {
 
         bool Collides(int oX, int oY, int oW, int oH);
 
+		//Drawing
+		void SetSprite(char* file);
+
+		void SetSprite(char* file, SpriteAnchor SA);
+		
+		void SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate);
+		
+		void SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA);
+
 		//Events
 		void OnEvent(SDL_Event* Ev);
 

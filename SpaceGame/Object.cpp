@@ -64,7 +64,7 @@ void Object::OnLoop() {
 void Object::OnRender(SDL_Surface* display) {
 	if (Spr)
 		if (Animation) {
-			Spr->OnDraw(display, (int) X, (int) Y, Animation->GetCurrentFrame()*(Width+1), 0, Spr->SpriteW, Spr->SpriteH);
+			Spr->OnDraw(display, (int) X, (int) Y, Animation->GetCurrentFrame()*(Width+1), 0, Width, Height);
 			Animation->OnAnimate();
 		}
 		else
@@ -358,4 +358,66 @@ bool Object::Collides(int oX, int oY, int oW, int oH) {
     if (left1 > right2) return false;
 
     return true;
+}
+
+// Drawing
+
+void Object::SetSprite(char* file) {
+	if (file) {
+		Spr = new Sprite(file, UPPERLEFT);
+
+		Width = Spr->SpriteW;
+		Height = Spr->SpriteW;
+		Animation = NULL;
+	}
+	else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, SpriteAnchor SA) {
+	if (file) {
+		Spr = new Sprite(file, SA);
+
+		Width = Spr->SpriteW;
+		Height = Spr->SpriteW;
+		Animation = NULL;
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate) {
+	if (file) {
+		Spr = new Sprite(file, UPPERLEFT);
+
+		Width = SpriteX;
+		Height = SpriteY;
+		Animation = new CAnimation();
+		Animation->MaxFrames = FrameCount;
+		Animation->SetFrameRate(FrameRate);
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
+}
+
+void Object::SetSprite(char* file, int FrameCount, float SpriteX, float SpriteY, int FrameRate, SpriteAnchor SA) {
+	if (file) {
+		Spr = new Sprite(file, SA);
+
+		Width = SpriteX;
+		Height = SpriteY;
+		Animation = new CAnimation();
+		Animation->MaxFrames = FrameCount;
+		Animation->SetFrameRate(FrameRate);
+	}
+		else {
+		Spr = NULL;
+		Animation = NULL;
+	}
 }
