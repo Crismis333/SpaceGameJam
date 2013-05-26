@@ -2,10 +2,7 @@
 
 Soldier::Soldier()
 {
-    Type = SOLDIER_TYPE_SOLDIER;
-    ObjectType = OBJECT_TYPE_SOLDIER;
-    SetVarsFromType();
-    Health = (float)MaxHealth;
+    Soldier(SOLDIER_TYPE_SOLDIER, 1000);
 }
 
 Soldier::Soldier(soldierType Type, int Health) {
@@ -13,11 +10,16 @@ Soldier::Soldier(soldierType Type, int Health) {
     this->Type = Type;
     SetVarsFromType();
     Health = std::min(MaxHealth, Health);
+    IsSelected = false;
+    IsPlaced = false;
 }
 
 void Soldier::SetVarsFromType() {
     switch (Type) {
         case SOLDIER_TYPE_HEAVY:
+            // Bitmap
+            bmSuffix = "Blue";
+
             // Health
             MaxHealth = 130;
             Armour = 2;
@@ -33,6 +35,9 @@ void Soldier::SetVarsFromType() {
             MoveCooldown = 0.8f;
         break;
         case SOLDIER_TYPE_SOLDIER:
+            // Bitmap
+            bmSuffix = "Dark";
+
             // Health
             MaxHealth = 100;
             Armour = 1;
@@ -48,6 +53,9 @@ void Soldier::SetVarsFromType() {
             MoveCooldown = 0.6f;
         break;
         case SOLDIER_TYPE_HEALER:
+            // Bitmap
+            bmSuffix = "Green";
+
             // Health
             MaxHealth = 100;
             Armour = 0;
@@ -63,6 +71,9 @@ void Soldier::SetVarsFromType() {
             MoveCooldown = 0.5f;
         break;
         case SOLDIER_TYPE_STEALTH:
+            // Bitmap
+            bmSuffix = "Orange";
+
             // Health
             MaxHealth = 90;
             Armour = 1;
@@ -78,6 +89,9 @@ void Soldier::SetVarsFromType() {
             MoveCooldown = 0.4f;
         break;
         case SOLDIER_TYPE_SNIPER:
+            // Bitmap
+            bmSuffix = "Red";
+
             // Health
             MaxHealth = 80;
             Armour = 0;

@@ -46,6 +46,24 @@ SDL_Surface* App::GetDisplay() {
 	return Display;
 }
 
+void App::SelectSoldier(Soldier* s) {
+    for (unsigned int i = 0; i < Unit.size(); i++) {
+        Unit[i]->IsSelected = false;
+    }
+    s->IsSelected = true;
+    SelectedSoldier = s;
+}
+
+void App::AutoSelectSoldier() {
+    // Select next soldier
+    for (unsigned int i = 0; i < Unit.size(); i ++) {
+        if (!Unit[i]->IsPlaced) {
+            SelectSoldier(Unit[i]);
+            return;
+        }
+    }
+}
+
 void App::InitGame() {
 	Object* Test = new Object();
 	TileSelector* TS = new TileSelector(32,32);
@@ -61,6 +79,16 @@ void App::InitGame() {
 	Object::Instantiate(Floor2,"./gfx/FloorGreen.png",33,144);
 	Object::Instantiate(Floor3,"./gfx/FloorRed.png",33,272);
 	Object::Instantiate(Floor4,"./gfx/FloorYellow.png",33,400);
+
+	// Create Soldier objects and add to Unit
+	Unit.push_back(new Soldier(SOLDIER_TYPE_HEAVY, 1000));
+	Unit.push_back(new Soldier(SOLDIER_TYPE_SOLDIER, 1000));
+	Unit.push_back(new Soldier(SOLDIER_TYPE_HEALER, 1000));
+	Unit.push_back(new Soldier(SOLDIER_TYPE_SNIPER, 1000));
+	Unit.push_back(new Soldier(SOLDIER_TYPE_STEALTH, 1000));
+
+    // Select the first soldier
+    SelectSoldier(Unit[0]);
 
 	Object::Instantiate(A, "./gfx/SpaghettiFloating.png", 200,200, NULL, 6, 32, 32, 200, MIDDLECENTER);
 

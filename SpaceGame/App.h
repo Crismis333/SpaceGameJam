@@ -30,6 +30,8 @@ class App : public Event {
 
 		Room*			CurrentRoom;
 		gameMode        GameMode;
+		std::vector<Soldier*> Unit;
+		Soldier*        SelectedSoldier;
 
 		//Methods
 		App();
@@ -49,6 +51,10 @@ class App : public Event {
 		void OnCleanup();
 
 		void GotoRoom(Room* Room);
+
+		void SelectSoldier(Soldier* s);
+
+		void AutoSelectSoldier();
 
 		SDL_Surface* GetDisplay();
 

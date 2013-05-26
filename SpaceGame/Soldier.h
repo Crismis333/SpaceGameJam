@@ -22,20 +22,25 @@ class Soldier : public Object
         void SetVarsFromType();
 
         // Props
-        soldierType Type;
+        soldierType     Type;
+        bool            IsSelected;
+
+        // Bitmap
+        const char *    bmSuffix;
 
         // Health
-        int MaxHealth;
-        float Health;
-        float Armour;
+        int             MaxHealth;
+        float           Health;
+        float           Armour;
 
         // Attack stuff
-        float Damage;
-        float DamageCooldown;
-        float DamageRandomModifier;
-        int Range;
+        float           Damage;
+        float           DamageCooldown;
+        float           DamageRandomModifier;
+        int             Range;
 
         // Movement
+        bool            IsPlaced;
         direction Direction;
         float MoveCooldown;
 

@@ -1,6 +1,7 @@
 #include "TileSelector.h"
 #include "Drawer.h"
 #include "App.h"
+#include <string>
 #define CROOM App::Application.CurrentRoom
 
 TileSelector::TileSelector() {
@@ -43,13 +44,27 @@ void TileSelector::OnLButtonDown(int mX, int mY) {
     switch (App::Application.GameMode) {
         case GAME_MODE_PLAN:
             {
-                Soldier* o = new Soldier(SOLDIER_TYPE_SOLDIER, 1000);
+                Soldier* o = App::Application.SelectedSoldier;
                 if (CROOM->TileIsFree(o, y, x)) {
-                    Object::Instantiate(o,"./gfx/TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
-                    CROOM->OccupyTile(o, y, x);
+                    if (!o->IsPlaced) {
+                        const char * img = (std::string("./gfx/Soldier/SoldierStill") + o->bmSuffix + ".png").c_str();
+                        Object::Instantiate(o, img, (float)CalcX(mX)+Width/2, (float)CalcY(mY)+Height/2, NULL, MIDDLECENTER);
+                        CROOM->OccupyTile(o, y, x);
+                    }
+                    else {
+                        CROOM->LeaveTile(o, CROOM->GetYTile(o->Y), CROOM->GetXTile(o->X));
+
+                        o->Y = (float)CalcY(mY)+Height/2;
+                        o->X = (float)CalcX(mX)+Width/2;
+                        CROOM->OccupyTile(o, y, x);
+                    }
+                    o->IsPlaced = true;
+
+                    // Select next soldier
+                    App::Application.AutoSelectSoldier();
 
                     #ifdef PRINTDEBUG
-                        printf("Tile occupied by new object\n");
+                        printf("No soldier to select\n");
                     #endif
                 }
                 else {
@@ -74,7 +89,13 @@ void TileSelector::OnRButtonDown(int mX, int mY) {
         case GAME_MODE_PLAN:
             for (unsigned int i = 0; i < CROOM->ObjectGrid[y][x].size(); i++) {
                 if (CROOM->ObjectGrid[y][x][i]->ObjectType == OBJECT_TYPE_SOLDIER) {
-                    CROOM->ObjectGrid[y][x][i]->Destroy();
+                    Soldier* o = (Soldier*) CROOM->ObjectGrid[y][x][i];
+                    CROOM->RemoveObject(o);
+                    CROOM->LeaveTile(o, y, x);
+                    o->IsPlaced = false;
+
+                    // Select next soldier
+                    App::Application.AutoSelectSoldier();
                 }
             }
         break;
