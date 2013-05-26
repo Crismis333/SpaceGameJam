@@ -123,6 +123,10 @@ int Room::GetYTile(float y) {
 	return std::min(3, (int) y / 128);
 }
 
+float Room::GetFloorHeight(int level) {
+	return level*128+80;
+}
+
 void Room::OnCleanup() {
 	for (unsigned int i = 0; i < ObjectList.size(); i++) {
 		if (!ObjectList[i]) continue;
