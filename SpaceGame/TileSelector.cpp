@@ -38,6 +38,14 @@ void TileSelector::OnLButtonDown(int mX, int mY) {
 	Object::Instantiate(o,"./TestSprite.png",(float)CalcX(mX)+Width/2,(float)CalcY(mY)+Height/2,NULL,MIDDLECENTER);
 }
 
+void TileSelector::OnRButtonDown(int mX, int mY) {
+	for (unsigned int i = 0; i < App::Application.CurrentRoom->ObjectList.size(); i++) {
+		if (App::Application.CurrentRoom->ObjectList[i]->X == ((float)CalcX(mX) + Width/2) &&
+			App::Application.CurrentRoom->ObjectList[i]->Y == ((float)CalcY(mY) + Height/2))
+			App::Application.CurrentRoom->ObjectList[i]->Destroy();
+	}
+}
+
 int TileSelector::CalcX(int x) {
 	if (x <= padLeft)
 		x = padLeft;

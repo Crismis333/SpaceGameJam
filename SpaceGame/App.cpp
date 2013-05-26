@@ -20,10 +20,6 @@ int App::OnExecute() {
 
 	Object::Instantiate(&Test, "./HUD.png");
 
-	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
-
-	Object::Instantiate(&Test2, "./TestSprite.png", 200, 200, NULL, MIDDLECENTER);
-
 	Object::Instantiate(&TS, NULL, 100, 100, NULL, UPPERLEFT);
 
 	SDL_Event Ev;

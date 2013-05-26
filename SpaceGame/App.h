@@ -20,10 +20,7 @@ class App : public Event {
 		Room			InitialRoom;
 
 		Object			Test;
-		Object			Test2;
-		Alien			Atest;
 		TileSelector	TS;
-		Room			TestRoom;
 
 	public:
 		static App Application;

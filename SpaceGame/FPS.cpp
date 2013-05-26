@@ -1,4 +1,5 @@
 #include "FPS.h"
+#include "App.h"
 
 FPS FPS::FPSControl;
 
@@ -18,9 +19,10 @@ void FPS::OnFrameBegin() {
         Frames = 0;
 
         #ifdef PRINTDEBUG
-			printf("Current FPS is:%d\n", FPSval);
-			printf("ConvertSpeedTest (from 200 px/sec):%f\n", ConvertSpeed(200));
-			printf("Time increase:%d\n", CurrentLoopTime - LastLoopTime);
+			printf("Current FPS is: %d\n", FPSval);
+			printf("Object count: %u\n", App::Application.CurrentRoom->ObjectList.size());
+			printf("ConvertSpeed Test (from 200 px/sec): %f\n", ConvertSpeed(200));
+			printf("Time increase: %d\n", CurrentLoopTime - LastLoopTime);
 		#endif
     }
 }

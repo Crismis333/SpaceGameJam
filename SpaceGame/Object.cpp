@@ -25,7 +25,7 @@ Object::Object() {
 
 	Dead = false;
 
-	ID = Object::IDcount;
+	ID = IDcount;
 	IDcount++;
 
 	Col_X = 0;
@@ -136,6 +136,11 @@ void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* 
 	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
+void Object::Destroy() {
+	App::Application.CurrentRoom->RemoveObject(this);
+	OnCleanup();
+}
+
 void Object::OnEvent(SDL_Event* Ev) {
 	Event::OnEvent(Ev);
 }
@@ -209,13 +214,13 @@ void Object::OnMove(float MoveX, float MoveY) {
             if(PosValid((int)(X + NewX), (int)(Y))) {
                 X += NewX;
             }else{
-                SpeedX = 0;
+                //SpeedX = 0;
             }
 
             if(PosValid((int)(X), (int)(Y + NewY))) {
                 Y += NewY;
             }else{
-                SpeedY = 0;
+                //SpeedY = 0;
             }
         }
 
