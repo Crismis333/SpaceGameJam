@@ -2,11 +2,12 @@
     #define APP_H_
 	#define PRINTDEBUG //comment out or remove to disable debug log
 
-	#define SCREEN_WIDTH	640
-	#define SCREEN_HEIGHT	480
+	#define SCREEN_WIDTH	800
+	#define SCREEN_HEIGHT	600
 
 #include "Room.h"
 #include <math.h>
+#include "Alien.h"
 
 class App : public Event {
 	private:
@@ -18,6 +19,7 @@ class App : public Event {
 
 		Object			Test;
 		Object			Test2;
+		Alien			Atest;
 		Room			TestRoom;
 
 	public:

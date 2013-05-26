@@ -16,22 +16,16 @@ int App::OnExecute() {
 		return -1;
 	}
 
-	Test.SetSprite("./TestSprite.png");
-	Test.Width = 16;
-	Test.Height = 32;
-
-	Test2.SetSprite("./TestSprite.png");
-	Test2.Width = 16;
-	Test2.Height = 32;
-	Test2.X = 200;
-	Test2.Y = 200;
-
-	TestRoom.AddObject(&Test);
-	TestRoom.AddObject(&Test2);
 	Room::RoomList.push_back(&TestRoom);
 
 	GotoRoom(&TestRoom);
-	
+
+	Object::Instantiate(&Atest, "./TestSprite2.png", 400, 400, NULL, MIDDLECENTER);
+
+	Object::Instantiate(&Test, "./TestSprite.png", 0.0f, 0.0f, NULL, MIDDLECENTER);
+
+	Object::Instantiate(&Test2, "./TestSprite.png", 200, 200, NULL, MIDDLECENTER);
+
 	SDL_Event Ev;
 
 	while(Running) {

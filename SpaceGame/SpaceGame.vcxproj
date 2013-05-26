@@ -69,6 +69,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="App_OnCleanup.cpp" />
     <ClCompile Include="App_OnEvent.cpp" />
@@ -91,6 +92,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="FPS.h" />

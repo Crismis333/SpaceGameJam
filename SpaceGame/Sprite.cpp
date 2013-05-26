@@ -4,12 +4,30 @@ Sprite::Sprite() {
 	Image = NULL;
 
 	OffsetX = OffsetY = 0;
+
+	SpriteW = SpriteH = 0;
 }
 
-Sprite::Sprite(const char* file) {
-	OffsetX = OffsetY = 0;
+Sprite::Sprite(const char* file, SpriteAnchor SA) {
 	Image = LoadImage(file);
-	SetTransparencyColor(255,0,255);
+	if (Image) {
+		SpriteW = Image->w;
+		SpriteH = Image->h;
+
+		switch(SA) {
+			case UPPERLEFT: OffsetX = OffsetY = 0; break;
+			case UPPERCENTER: OffsetX = SpriteW / 2; OffsetY = 0; break;
+			case UPPERRIGHT:  OffsetX = SpriteW; OffsetY = 0; break;
+			case MIDDLELEFT: OffsetX = 0; OffsetY = SpriteH / 2; break;
+			case MIDDLECENTER: OffsetX = SpriteW / 2; OffsetY = SpriteH / 2; break;
+			case MIDDLERIGHT: OffsetX = SpriteW; OffsetY = SpriteH / 2; break;
+			case LOWERLEFT: OffsetX = 0; OffsetY = SpriteH; break;
+			case LOWERCENTER: OffsetX = SpriteW / 2; OffsetY = SpriteH; break;
+			case LOWERRIGHT: OffsetX = SpriteW; OffsetY = SpriteH; break;
+		}
+	
+		SetTransparencyColor(255,0,255);
+	}
 }
 
 SDL_Surface* Sprite::LoadImage(const char* file) {
@@ -87,4 +105,18 @@ bool Sprite::SetTransparencyColor(int R, int G, int B) {
 
 void Sprite::OnCleanup() {
 	SDL_FreeSurface(Image);
+}
+
+Rect::Rect() {
+	X = 0;
+	Y = 0;
+	Width = 0;
+	Height = 0;
+}
+
+Rect::Rect(float X, float Y, int W, int H) {
+	this->X = X;
+	this->Y = Y;
+	this->Width = W;
+	this->Height = H;
 }

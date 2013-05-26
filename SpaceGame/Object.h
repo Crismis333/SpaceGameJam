@@ -58,7 +58,13 @@ class Object : public Event {
 
 		virtual void OnCleanup();
 
-		void SetSprite(const char* file);
+		static void Instantiate(Object* obj,const char* file);
+
+		static void Instantiate(Object* obj,const char* file, float X, float Y);
+
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox);
+
+		static void Instantiate(Object* obj,const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA);
 
 		//Collision
 		virtual bool OnCollision(Object* Obj);

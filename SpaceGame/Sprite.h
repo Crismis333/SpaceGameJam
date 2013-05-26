@@ -10,6 +10,12 @@
 	#include <SDL/SDL_image.h>
 #endif
 
+enum SpriteAnchor {
+	UPPERLEFT, UPPERCENTER, UPPERRIGHT,
+	MIDDLELEFT, MIDDLECENTER, MIDDLERIGHT,
+	LOWERLEFT, LOWERCENTER, LOWERRIGHT
+};
+
 class Sprite {
 	private:
 		//Vars
@@ -26,17 +32,30 @@ class Sprite {
 
 		int OffsetX;
 		int OffsetY;
+		int SpriteW;
+		int SpriteH;
 
 		//Methods
 		Sprite();
 
-		Sprite(const char* file);
+		Sprite(const char* file, SpriteAnchor SA);
 
 		bool OnDraw(SDL_Surface* Display, int X, int Y);
 
 		bool OnDraw(SDL_Surface* Display, int X, int Y, int X2, int Y2, int W, int H);
 
 		void OnCleanup();
+};
+
+struct Rect {
+	public:
+		float X;
+		float Y;
+		int Width;
+		int Height;
+
+		Rect();
+		Rect(float X, float Y, int Width, int Height);
 };
 
 #endif

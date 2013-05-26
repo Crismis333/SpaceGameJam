@@ -74,4 +74,5 @@ void Room::OnCleanup() {
 	}
 
 	ObjectList.clear();
+	ObjectCol::ObjectColList.clear();
 }

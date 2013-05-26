@@ -67,8 +67,64 @@ void Object::OnCleanup() {
 		Spr->OnCleanup();
 }
 
-void Object::SetSprite(const char* file) {
-	Spr = new Sprite(file);
+//Instantiate
+void Object::Instantiate(Object* obj, const char* file) {
+	obj->Spr = new Sprite(file, UPPERLEFT);
+
+	obj->Width = obj->Spr->SpriteW;
+	obj->Height = obj->Spr->SpriteH;
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
+void Object::Instantiate(Object* obj, const char* file, float X, float Y) {
+	obj->Spr = new Sprite(file, UPPERLEFT);
+
+	obj->Width = obj->Spr->SpriteW;
+	obj->Height = obj->Spr->SpriteH;
+
+	obj->X = X;
+	obj->Y = Y;
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox) {
+	obj->Spr = new Sprite(file, UPPERLEFT);
+
+	obj->Width = obj->Spr->SpriteW;
+	obj->Height = obj->Spr->SpriteH;
+
+	obj->X = X;
+	obj->Y = Y;
+
+	if (BBox) {
+		obj->Col_X = (int)BBox->X;
+		obj->Col_Y = (int)BBox->Y;
+		obj->Col_Width = BBox->Width;
+		obj->Col_Height = BBox->Height;
+	}
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
+}
+
+void Object::Instantiate(Object* obj, const char* file, float X, float Y, Rect* BBox, SpriteAnchor SA) {
+	obj->Spr = new Sprite(file, SA);
+
+	obj->Width = obj->Spr->SpriteW;
+	obj->Height = obj->Spr->SpriteH;
+
+	obj->X = X;
+	obj->Y = Y;
+
+	if (BBox) {
+		obj->Col_X = (int)BBox->X;
+		obj->Col_Y = (int)BBox->Y;
+		obj->Col_Width = BBox->Width;
+		obj->Col_Height = BBox->Height;
+	}
+
+	App::Application.CurrentRoom->ObjectList.push_back(obj);
 }
 
 void Object::OnEvent(SDL_Event* Ev) {
@@ -96,7 +152,7 @@ bool Object::PosValid(int NewX, int NewY) {
 bool Object::PosValidEntity(Object* Obj, int NewX, int NewY) {
 	if(this != Obj && Obj != NULL && Obj->Dead == false &&
         Obj->Flags ^ OBJECT_FLAG_MAPONLY &&
-        Obj->Collides(NewX + Col_X, NewY + Col_Y, Width - Col_Width - 1, Height - Col_Height - 1) == true) {
+		Obj->Collides(NewX + Col_X - Obj->Spr->OffsetX, NewY + Col_Y - Obj->Spr->OffsetY, Width - Col_Width - 1, Height - Col_Height - 1) == true) {
  
         ObjectCol objCol;
  
@@ -192,8 +248,8 @@ bool Object::Collides(int oX, int oY, int oW, int oH) {
     int top1, top2;
     int bottom1, bottom2;
  
-    int tX = (int)X + Col_X;
-    int tY = (int)Y + Col_Y;
+	int tX = (int)X + Col_X - Spr->OffsetX;
+	int tY = (int)Y + Col_Y - Spr->OffsetY;
  
     left1 = tX;
     left2 = oX;
