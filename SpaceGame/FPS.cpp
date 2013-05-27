@@ -14,14 +14,15 @@ void FPS::OnFrameBegin() {
 
     SpeedFactor = (CurrentLoopTime - LastLoopTime) / 1000.0f;
 
-	if (floorf((float)SDL_GetTicks() / 1000) - floorf((float)LastLoopTime / 1000) == 1) {
+	if (SDL_GetTicks() / 1000 - LastLoopTime / 1000 == 1) {
         FPSval = Frames;
         Frames = 0;
 
         /*#ifdef PRINTDEBUG
 			printf("Current FPS is: %d\n", FPSval);
+			printf("Speedfactor is: %f\n", SpeedFactor);
 			printf("Object count: %u\n", (int) App::Application.CurrentRoom->ObjectList.size());
-			printf("ConvertSpeed Test (from 200 px/sec): %f\n", ConvertSpeed(200));
+			printf("ConvertSpeed Test (from 32 px/sec): %f\n", ConvertSpeed(32));
 			printf("Time increase: %d\n", CurrentLoopTime - LastLoopTime);
 		#endif*/
     }
@@ -50,5 +51,5 @@ float FPS::GetSpeedFactor() {
 }
 
 float FPS::GetDeltaTime() {
-	return (CurrentLoopTime-LastLoopTime)/1000.0f;
+	return (CurrentLoopTime-LastLoopTime);
 }

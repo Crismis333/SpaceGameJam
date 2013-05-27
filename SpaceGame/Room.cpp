@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "App.h"
 
 std::vector<Room*> Room::RoomList;
 
@@ -117,7 +118,7 @@ bool Room::TileIsFree(Object * object, int y, int x) {
 }
 
 int Room::GetXTile(float x) {
-    return std::max(0, std::min(22, ((int) x - 32) / 32));
+    return std::max(0, std::min(22, ((int) x - 32) / App::Application.TileWidth));
 }
 int Room::GetYTile(float y) {
 	return std::min(3, (int) y / 128);

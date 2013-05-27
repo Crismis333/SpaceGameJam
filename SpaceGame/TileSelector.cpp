@@ -64,10 +64,6 @@ void TileSelector::OnLButtonDown(int mX, int mY) {
 
                     // Select next soldier
                     App::Application.AutoSelectSoldier();
-
-                    #ifdef PRINTDEBUG
-                        printf("No soldier to select\n");
-                    #endif
                 }
                 else {
                     #ifdef PRINTDEBUG

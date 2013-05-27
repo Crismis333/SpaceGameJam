@@ -8,6 +8,7 @@ App::App() {
 	Room::RoomList.push_back(&InitialRoom);
 	CurrentRoom = &InitialRoom;
 	GameMode = GAME_MODE_PLAN;
+	TileWidth = 32;
 
 	Running = true;
 }
@@ -66,7 +67,7 @@ void App::AutoSelectSoldier() {
 
 void App::InitGame() {
 	Object* Test = new Object();
-	TileSelector* TS = new TileSelector(32,32);
+	TileSelector* TS = new TileSelector(TileWidth,32);
 	Spawner* S = new Spawner();
 	Alien* A = new Alien();
 	A->ObjectType = OBJECT_TYPE_ALIEN;
@@ -85,8 +86,8 @@ void App::InitGame() {
 	Unit.push_back(new Soldier(SOLDIER_TYPE_HEAVY, 1000));
 	Unit.push_back(new Soldier(SOLDIER_TYPE_SOLDIER, 1000));
 	Unit.push_back(new Soldier(SOLDIER_TYPE_HEALER, 1000));
-	Unit.push_back(new Soldier(SOLDIER_TYPE_SNIPER, 1000));
 	Unit.push_back(new Soldier(SOLDIER_TYPE_STEALTH, 1000));
+	Unit.push_back(new Soldier(SOLDIER_TYPE_SNIPER, 1000));
 
     // Select the first soldier
     SelectSoldier(Unit[0]);

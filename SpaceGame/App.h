@@ -32,6 +32,7 @@ class App : public Event {
 		gameMode        GameMode;
 		std::vector<Soldier*> Unit;
 		Soldier*        SelectedSoldier;
+		int             TileWidth;
 
 		//Methods
 		App();

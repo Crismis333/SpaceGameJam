@@ -122,14 +122,14 @@ void Soldier::OnLoop() {
 
 	if (DestX != X) {
 		float dX = abs((float) (DestX - X));
-		float sX = (Width / MoveCooldown) * FPS::FPSControl.GetSpeedFactor();
+		float sX = (App::Application.TileWidth / MoveCooldown) * FPS::FPSControl.GetSpeedFactor();
 
-		if (dX < sX)
+		if (dX < sX) {
 			DestX = X;
-		else
+		}
+		else {
 			X += sX * (DestX - X) / dX;
-
-
+        }
 	}
 
 	int tileX = CROOM->GetXTile(X);
@@ -193,13 +193,14 @@ void Soldier::OnLoop() {
 }
 
 void Soldier::OnKeyDown(SDLKey sym, SDLMod mod, Uint16 unicode) {
-	//if IsSelected
-	switch(sym) {
-		case SDLK_a: UseAction(); break;
-		case SDLK_s: UseSpecial(); break;
-		case SDLK_w: UseMove(); break;
-		case SDLK_q: UseTurn(); break;
-		default: break;
+	if (IsSelected) {
+        switch(sym) {
+            case SDLK_a: UseAction(); break;
+            case SDLK_s: UseSpecial(); break;
+            case SDLK_w: UseMove(); break;
+            case SDLK_q: UseTurn(); break;
+            default: break;
+        }
 	}
 }
 
@@ -212,16 +213,13 @@ void Soldier::UseSpecial() {
 
 void Soldier::UseMove() {
 	if (LastMove + MoveCooldown*1000 < FPS::FPSControl.CurrentLoopTime && DestX == X) {
-
-        printf("Moving!\n");
-
 		int tileX = CROOM->GetXTile(X);
 		int tileY = CROOM->GetYTile(Y);
 		if (Direction == DIRECTION_LEFT) {
 			if (tileX != 0) {
 				CROOM->LeaveTile(this,tileY,tileX);
 				CROOM->OccupyTile(this,tileY,tileX-1);
-				DestX = (tileX - 1) * 32 + 33 + 16;
+				DestX = (tileX - 1) * App::Application.TileWidth + 33 + 16;
 			}
 			else
 				return;
@@ -230,7 +228,7 @@ void Soldier::UseMove() {
 			if (tileX != 22) {
 				CROOM->LeaveTile(this,tileY,tileX);
 				CROOM->OccupyTile(this,tileY,tileX+1);
-				DestX = (tileX + 1) * 32 + 33 + 16;
+				DestX = (tileX + 1) * App::Application.TileWidth + 33 + 16;
 			}
 			else
 				return;

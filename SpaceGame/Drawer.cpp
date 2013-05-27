@@ -15,7 +15,7 @@ void Drawer::Point(int X, int Y)
 		return;
 
 	Uint32 *pixmem32;
-  
+
 	pixmem32 = (Uint32*) App::Application.GetDisplay()->pixels  + Y*SCREEN_WIDTH + X;
 	*pixmem32 = color;
 }
@@ -40,7 +40,7 @@ void Drawer::Line(int X1, int Y1, int X2, int Y2)
 		sY = -1;
 
 	err = dX - dY;
-	
+
 	while(RunLoop)
 	{
 		Point(X1, Y1);
@@ -72,7 +72,7 @@ void Drawer::Rectangle(Rect rec, bool fill) {
 		Line(rec.X,rec.Y,rec.X+rec.Width,rec.Y);
 		Line(rec.X,rec.Y,rec.X,rec.Y+rec.Height);
 
-		Line(rec.X+rec.Width, rec.Y, rec.X+rec.Height, rec.Y+rec.Width);
-		Line(rec.X, rec.Y+rec.Width, rec.X+rec.Height, rec.Y+rec.Width);
+		Line(rec.X+rec.Width, rec.Y, rec.X+rec.Width, rec.Y+rec.Height);
+		Line(rec.X, rec.Y+rec.Height, rec.X+rec.Width, rec.Y+rec.Height);
 	}
 }
